@@ -1,0 +1,33 @@
+{
+  "name": "discordjs-bot",
+  "version": "0.1.0",
+  "description": "A General Purpose Discord.js Bot.",
+  "author": "Martin Groeneveld <martin@groveld.com>",
+  "main": "app/index.js",
+  "scripts": {
+    "start": "cd app/ && NODE_PATH=. node index.js"
+  },
+  "keywords": [
+    "nodejs",
+    "discordjs",
+    "discordapp",
+    "discord",
+    "bot"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/groveld/discordjs-bot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/groveld/discordjs-bot/issues"
+  },
+  "homepage": "https://www.groveld.com/discordjs-bot/",
+  "dependencies": {
+    "chalk": "^2.3.2",
+    "discord.js": "^11.3.2",
+    "moment": "^2.21.0",
+    "node-opus": "^0.2.7",
+    "npm": "^5.8.0",
+    "winston": "^2.4.1"
+  }
+}
