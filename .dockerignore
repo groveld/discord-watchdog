@@ -1,6 +1,6 @@
 .git
 .gitignore
-LICENSE.md
+LICENSE
 README.md
 node_modules
 npm-debug.log

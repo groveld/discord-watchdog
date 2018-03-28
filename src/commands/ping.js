@@ -1,4 +1,5 @@
-exports.run = (client, message) => {
+exports.run = async (client, message) => {
+  await message.delete();
   message.channel.send('Ping?')
   .then(msg => {
     msg.edit({embed: {
@@ -8,15 +9,14 @@ exports.run = (client, message) => {
   });
 };
 
-exports.info = {
-  name: 'ping',
-  description: 'Ping/Pong command. I wonder what this does? /sarcasm',
-  usage: 'ping'
-};
-
 exports.conf = {
   enabled: true,
   aliases: [],
-  runIn: ['text', 'dm', 'group'],
   permLevel: 0
+};
+
+exports.help = {
+  name: 'ping',
+  description: 'It... like... pings. Then Pongs. And it\'s not Ping Pong.',
+  usage: 'ping'
 };

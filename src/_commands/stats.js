@@ -1,5 +1,5 @@
 const moment = require('moment');
-const { version } = require('../../package.json');
+const { npm_package_version } = process.env;
 
 exports.run = (client, message) => {
   let guilds = client.guilds.size;
@@ -28,16 +28,10 @@ exports.run = (client, message) => {
     },
     {
       name: '❯ Version',
-      value: version,
+      value: npm_package_version,
       inline: true
     }]
   }});
-};
-
-exports.info = {
-  name: 'stats',
-  description: 'Displays statistics about the bot.',
-  usage: ''
 };
 
 exports.conf = {
@@ -45,4 +39,10 @@ exports.conf = {
   aliases: ['statistics'],
   runIn: ['text', 'dm', 'group'],
   permLevel: 0
+};
+
+exports.help = {
+  name: 'stats',
+  description: 'Displays statistics about the bot.',
+  usage: ''
 };
