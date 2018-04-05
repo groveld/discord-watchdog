@@ -1,5 +1,6 @@
 .git
 .gitignore
+docs
 LICENSE
 README.md
 node_modules
