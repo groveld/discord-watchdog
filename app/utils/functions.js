@@ -1,5 +1,4 @@
 module.exports = (client) => {
-
   // This function should resolve to an ELEVATION level which
   // is then sent to the command handler for verification.
   client.elevation = message => {
@@ -10,7 +9,7 @@ module.exports = (client) => {
     if (modRole && message.member.roles.has(modRole.id)) permlvl = 2; // has moderator role
     if (adminRole && message.member.roles.has(adminRole.id)) permlvl = 3; // has administrator role
     if (message.author.id === message.guild.owner.id) permlvl = 5; // is server owner
-    // if (message.author.id === OWNER) permlvl = 10; // is bot owner
+    if (message.author.id === process.env.OWNER) permlvl = 10; // is bot owner
     return permlvl;
   };
 
@@ -80,7 +79,7 @@ module.exports = (client) => {
     text = text
       .replace(/`/g, "`" + String.fromCharCode(8203))
       .replace(/@/g, "@" + String.fromCharCode(8203))
-      .replace(client.token, "mfa.VkO_2G4Qv3T--NO--lWetW_tjND--TOKEN--QFTm6YGtzq9PH--4U--tG0");
+      .replace(client.config.token, "mfa.VkO_2G4Qv3T--NO--lWetW_tjND--TOKEN--QFTm6YGtzq9PH--4U--tG0");
 
     return text;
   };

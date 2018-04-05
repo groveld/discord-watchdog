@@ -1,4 +1,3 @@
-const { CONFIG, TOKEN, OWNER } = process.env;
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const fs = require("fs");
@@ -10,7 +9,7 @@ client.settings = new Enmap();
 client.commands = new Enmap();
 client.aliases = new Enmap();
 
-// Just setting up a default configuration object here, to have something to insert.
+// Setting the bot defaults
 client.settings.default = {
   prefix: "!",
   logChannel: "log",
@@ -55,7 +54,7 @@ const init = async () => {
     });
   });
 
-  client.login(TOKEN).catch(err => client.logger.error(err.message));
+  client.login(process.env.TOKEN).catch(err => client.logger.error(err.message));
 };
 
 init();
