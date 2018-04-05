@@ -2,8 +2,7 @@ module.exports = async (client, guild) => {
   // // Well they're gone. Let's remove them from the settings!
   client.settings.delete(guild.id);
 
-  // this.client.user.setPresence({game: {name: `${this.client.settings.get("default").prefix}help | ${this.client.guilds.size} Servers`, type:0}});
+  client.user.setPresence({game: {name: `${client.settings.get("default").prefix}help | ${client.guilds.size} servers`, type:0}});
 
-  // // Well they're gone. Let's remove them from the settings!
-  // this.client.settings.delete(guild.id);
+  client.logger.info(`New guild has left: ${guild.name} (${guild.id}) with ${guild.memberCount - 1} members.`);
 };

@@ -9,7 +9,6 @@ client.settings = new Enmap();
 client.commands = new Enmap();
 client.aliases = new Enmap();
 
-// Setting the bot defaults
 client.settings.default = {
   prefix: "!",
   logChannel: "log",
@@ -58,8 +57,3 @@ const init = async () => {
 };
 
 init();
-
-client.on("disconnect", () => client.logger.warn("Bot is disconnecting..."))
-client.on("reconnect", () => client.logger.log("Bot is reconnecting..."))
-client.on("error", err => client.logger.error(err.message))
-client.on("warn", err => client.logger.warn(err.message));

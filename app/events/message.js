@@ -9,6 +9,7 @@ module.exports = async (client, message) => {
   let cmd;
 
   if(!message.content.startsWith(settings.prefix)) return;
+
   if (client.commands.has(command)) {
     cmd = client.commands.get(command);
   } else if (client.aliases.has(command)) {

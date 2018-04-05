@@ -3,5 +3,6 @@
 docs
 LICENSE
 README.md
+package-lock.json
 node_modules
 npm-debug.log

@@ -1,8 +1,8 @@
 FROM node:latest
 WORKDIR /app/discordjs-bot
-COPY package*.json .
+COPY package.json ./
 RUN npm install
-COPY app .
+COPY app ./
 VOLUME /config
-EXPOSE 8080
+EXPOSE 5000
 CMD [ "node", "main.js" ]

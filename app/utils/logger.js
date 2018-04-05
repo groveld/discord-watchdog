@@ -1,4 +1,3 @@
-// const { CONFIG } = process.env;
 const winston = require('winston');
 const moment = require('moment');
 const chalk = require("chalk");
@@ -32,14 +31,14 @@ var logger = new winston.Logger({
       level: 'debug',
       filename: `${process.env.CONFIG}/discordjs-bot.log`,
       handleExceptions: true,
-      json: true,
+      json: false,
       maxsize: 5242880, //5MB
       maxFiles: 5,
       timestamp: true,
       colorize: false
     }),
     new winston.transports.Console({
-      level: 'debug',
+      level: 'info',
       handleExceptions: true,
       showLevel: true,
       timestamp: moment().format('DD-MM-YYYY HH:mm:ss'),
