@@ -1,15 +1,16 @@
 module.exports = async (client, member) => {
+  // Dont respond to itself.
   if (member.id === member.client.user.id) return;
 
-  // Load the guild's settings
+  // Load the guild's settings.
   const settings = client.settings.get(member.guild.id);
 
-  // If welcome is off, don't proceed (don't welcome the user)
-  if (settings.welcomeEnabled !== true) return;
+  // If msgEnabled is off, don't proceed.
+  if (settings.msgEnabled !== true) return;
 
-  // Replace the placeholders in the welcome message with actual data
-  const welcomeMessage = settings.welcomeMessage.replace("{{user}}", member.user.tag);
+  // Replace the placeholders in the goodbye message with actual data.
+  const msgGoodbye = settings.msgGoodbye.replace("{{user}}", member.user.tag);
 
-  // Send the welcome message to the welcome channel
-  member.guild.channels.find("name", settings.welcomeChannel).send(`**${member}** just left **${member.guild.name}**. Bye bye! :wave:`).catch(err => client.logger.error(err.message));
+  // Send the goodbye message to the goodbye channel.
+  member.guild.channels.find("name", settings.msgChannel).send(msgGoodbye).catch(err => client.logger.error(err.message));
 };

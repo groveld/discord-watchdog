@@ -1,5 +1,5 @@
 exports.run = async (client, message) => {
-  message.channel.send('Ping?')
+  message.channel.send("Ping?")
   .then(msg => {
     msg.edit({embed: {
       color: 3447003,
@@ -16,7 +16,7 @@ exports.conf = {
 };
 
 exports.help = {
-  name: 'ping',
-  description: 'It... like... pings. Then Pongs. And it\'s not Ping Pong.',
-  usage: 'ping'
+  name: "ping",
+  description: "It... like... pings. Then Pongs. And it's not Ping Pong.",
+  usage: "ping"
 };

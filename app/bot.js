@@ -14,9 +14,10 @@ client.settings.default = {
   logChannel: "log",
   modRole: "moderator",
   adminRole: "administrator",
-  welcomeEnabled: true,
-  welcomeChannel: "general",
-  welcomeMessage: "Say hello to {{user}}, everyone! We all need a warm welcome sometimes :D"
+  msgEnabled: true,
+  msgChannel: "general",
+  msgWelcome: "**{{user}}** joined the server. :tada:",
+  msgGoodbye: "**{{user}}** left the server. :sob:"
 }
 
 require("./utils/functions")(client);
@@ -53,7 +54,7 @@ const init = async () => {
     });
   });
 
-  client.login(process.env.TOKEN).catch(err => client.logger.error(err.message));
+  client.login(process.env.bot_token).catch(err => client.logger.error(err.message));
 };
 
 init();

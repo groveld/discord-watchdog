@@ -1,7 +1,8 @@
 // Sanitize global variables and set defaults if none provided.
-process.env.CONFIG = process.env.CONFIG || "/config";
-process.env.TOKEN = process.env.TOKEN || "";
-process.env.OWNER = process.env.OWNER || "143720221977477120";
+process.env.bot_config = process.env.bot_config || "/config";
+process.env.bot_owner = process.env.bot_owner || "143720221977477120";
+process.env.bot_port = process.env.bot_port || 5000;
+process.env.bot_token = process.env.bot_token || "";
 
 const logger = require("./utils/logger");
 const { ShardingManager } = require("discord.js");
@@ -9,7 +10,7 @@ const manager = new ShardingManager("./bot.js", {
   totalShards: "auto",
   respawn: true,
   shardArgs: [],
-  token: process.env.TOKEN
+  token: process.env.bot_token
 });
 
 manager.on("launch", shard => {

@@ -3,8 +3,8 @@ module.exports = async (client, message) => {
   if(!message.guild || message.author.bot) return;
 
   const settings = client.settings.get(message.guild.id);
-  const command = message.content.split(' ')[0].slice(settings.prefix.length);
-  const params = message.content.split(' ').slice(1);
+  const command = message.content.split(" ")[0].slice(settings.prefix.length);
+  const params = message.content.split(" ").slice(1);
   const perms = client.elevation(message);
   let cmd;
 

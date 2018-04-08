@@ -2,8 +2,8 @@ exports.run = async (client, message, args) => {
   const user = message.mentions.users.first();
   const amount = Math.min((!!parseInt(args[0]) ? parseInt(args[0]) : parseInt(args[1])), 100);
 
-  if (!amount && !user) return message.reply('Must specify a user and amount, or just an amount, of messages to purge!');
-  if (!amount) return message.reply('Must specify an amount to delete!');
+  if (!amount && !user) return message.reply("Must specify a user and amount, or just an amount, of messages to purge!");
+  if (!amount) return message.reply("Must specify an amount to delete!");
 
   await message.delete();
 
@@ -19,12 +19,12 @@ exports.run = async (client, message, args) => {
 
 exports.conf = {
   enabled: true,
-  aliases: ['purge', 'prune', 'clear', 'rm'],
-  permLevel: 2
+  aliases: ["purge", "prune", "clear", "rm"],
+  permLevel: 3 // Moderator
 };
 
 exports.help = {
-  name: 'clean',
-  description: 'Cleans X amount of messages from a given channel',
-  usage: 'clean [user] <number>'
+  name: "clean",
+  description: "Cleans X amount of messages from a given channel",
+  usage: "clean [user] <number>"
 };

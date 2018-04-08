@@ -7,7 +7,8 @@ exports.run = async (client, message) => {
   • Channels   :: ${client.channels.size.toLocaleString()}
   • Discord.js :: version
   • Node       :: ${process.version}`, {code: "asciidoc"});
-  await message.delete();
+
+  // await message.delete();
 };
 
 exports.conf = {
@@ -17,7 +18,7 @@ exports.conf = {
 };
 
 exports.help = {
-  name: 'stats',
-  description: 'Gives some useful bot statistics.',
-  usage: 'stats'
+  name: "stats",
+  description: "Gives some useful bot statistics.",
+  usage: "stats"
 };

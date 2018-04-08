@@ -2,14 +2,14 @@ module.exports = (client) => {
   // This function should resolve to an ELEVATION level which
   // is then sent to the command handler for verification.
   client.elevation = message => {
-    let permlvl = 0;
     const settings = client.settings.get(message.guild.id);
-    const modRole = message.guild.roles.find('name', settings.modRole);
-    const adminRole = message.guild.roles.find('name', settings.adminRole);
-    if (modRole && message.member.roles.has(modRole.id)) permlvl = 2; // has moderator role
-    if (adminRole && message.member.roles.has(adminRole.id)) permlvl = 3; // has administrator role
-    if (message.author.id === message.guild.owner.id) permlvl = 5; // is server owner
-    if (message.author.id === process.env.OWNER) permlvl = 10; // is bot owner
+    const modRole = message.guild.roles.find("name", settings.modRole);
+    const adminRole = message.guild.roles.find("name", settings.adminRole);
+    let permlvl = 0; // Default (No Restrictions)
+    if (modRole && message.member.roles.has(modRole.id)) permlvl = 3; // Moderator
+    if (adminRole && message.member.roles.has(adminRole.id)) permlvl = 4; // Administrator
+    if (message.author.id === message.guild.owner.id) permlvl = 5; // Guild Owner
+    if (message.author.id === process.env.bot_owner) permlvl = 10; // Bot Owner
     return permlvl;
   };
 
@@ -79,7 +79,7 @@ module.exports = (client) => {
     text = text
       .replace(/`/g, "`" + String.fromCharCode(8203))
       .replace(/@/g, "@" + String.fromCharCode(8203))
-      .replace(process.env.TOKEN, "mfa.VkO_2G4Qv3T--NO--lWetW_tjND--TOKEN--QFTm6YGtzq9PH--4U--tG0");
+      .replace(process.env.bot_token, "mfa.VkO_2G4Qv3T--NO--lWetW_tjND--TOKEN--QFTm6YGtzq9PH--4U--tG0");
 
     return text;
   };
@@ -139,9 +139,17 @@ module.exports = (client) => {
   // `await client.wait(1000);` to "pause" for 1 second.
   client.wait = require("util").promisify(setTimeout);
 
-  client.on("error", error => client.logger.error(error))
-  client.on("warn", warning => client.logger.warn(warning))
-  // client.on("debug", debug => client.logger.debug(debug));
+  client.on("error", error => {
+    client.logger.error(error)
+  });
+
+  client.on("warn", warning => {
+    client.logger.warn(warning)
+  });
+
+  // client.on("debug", debug => {
+  //   client.logger.debug(debug)
+  // });
 
   process.on("uncaughtException", err => {
     const errorMsg = err.stack.replace(new RegExp(`${__dirname}/`, "g"), "./");
@@ -152,6 +160,11 @@ module.exports = (client) => {
   process.on("unhandledRejection", err => {
     client.logger.error("Unhandled rejection: ", err.stack);
     process.exit(1);
+  });
+
+  process.on("SIGINT", () => {
+    client.destroy();
+    process.exit();
   });
 
 };

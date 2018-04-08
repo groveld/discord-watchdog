@@ -1,16 +1,16 @@
-const winston = require('winston');
-const moment = require('moment');
+const winston = require("winston");
+const moment = require("moment");
 const chalk = require("chalk");
 
 const colorLevel = level => {
   switch (level) {
-    case 'INFO':
+    case "INFO":
       return chalk.cyan(level);
-    case 'ERROR':
+    case "ERROR":
       return chalk.red(level);
-    case 'WARN':
+    case "WARN":
       return chalk.yellow(level);
-    case 'DEBUG':
+    case "DEBUG":
       return chalk.green(level);
   }
 };
@@ -18,8 +18,8 @@ const colorLevel = level => {
 const formatter = options => {
   const timestamp = options.timestamp;
   const level = options.level.toUpperCase();
-  const message = options.message ? options.message : '';
-  const meta = options.meta && Object.keys(options.meta).length ? `\n${chalk.cyan('META')}: ` + JSON.stringify(options.meta) : '';
+  const message = options.message ? options.message : "";
+  const meta = options.meta && Object.keys(options.meta).length ? `\n${chalk.cyan("META")}: ` + JSON.stringify(options.meta) : "";
 
   return `${chalk.gray(`[${timestamp}]`)} [${colorLevel(level)}] ${message} ${meta}`;
 };
@@ -28,8 +28,8 @@ winston.emitErrs = true;
 var logger = new winston.Logger({
   transports: [
     new winston.transports.File({
-      level: 'debug',
-      filename: `${process.env.CONFIG}/discordjs-bot.log`,
+      level: "debug",
+      filename: `${process.env.bot_config}/discordjs-bot.log`,
       handleExceptions: true,
       json: false,
       maxsize: 5242880, //5MB
@@ -38,10 +38,10 @@ var logger = new winston.Logger({
       colorize: false
     }),
     new winston.transports.Console({
-      level: 'info',
+      level: "info",
       handleExceptions: true,
       showLevel: true,
-      timestamp: moment().format('DD-MM-YYYY HH:mm:ss'),
+      timestamp: moment().format("DD-MM-YYYY HH:mm:ss"),
       formatter
     })
   ],
