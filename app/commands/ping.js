@@ -6,13 +6,12 @@ exports.run = async (client, message) => {
       description: `**Pong!** Latency is ${msg.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`
     }});
   });
-  // await message.delete();
 };
 
 exports.conf = {
   enabled: true,
   aliases: [],
-  permLevel: 0
+  permLevel: 0 // Anyone
 };
 
 exports.help = {

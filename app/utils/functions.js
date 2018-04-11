@@ -5,7 +5,7 @@ module.exports = (client) => {
     const settings = client.settings.get(message.guild.id);
     const modRole = message.guild.roles.find("name", settings.modRole);
     const adminRole = message.guild.roles.find("name", settings.adminRole);
-    let permlvl = 0; // Default (No Restrictions)
+    let permlvl = 0; // Anyone
     if (modRole && message.member.roles.has(modRole.id)) permlvl = 3; // Moderator
     if (adminRole && message.member.roles.has(adminRole.id)) permlvl = 4; // Administrator
     if (message.author.id === message.guild.owner.id) permlvl = 5; // Guild Owner

@@ -12,8 +12,8 @@ client.aliases = new Enmap();
 client.settings.default = {
   prefix: "!",
   logChannel: "log",
-  modRole: "moderator",
-  adminRole: "administrator",
+  modRole: "moderators",
+  adminRole: "staff",
   msgEnabled: true,
   msgChannel: "general",
   msgWelcome: "**{{user}}** joined the server. :tada:",

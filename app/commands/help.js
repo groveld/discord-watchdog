@@ -13,13 +13,12 @@ exports.run = async (client, message, args) => {
       message.channel.send(`= ${command.help.name} = \n${command.help.description}\nusage :: ${settings.prefix}${command.help.usage}`, {code:"asciidoc"});
     }
   }
-  // await message.delete();
 };
 
 exports.conf = {
   enabled: true,
   aliases: ["h"],
-  permLevel: 0
+  permLevel: 0 // Anyone
 };
 
 exports.help = {

@@ -1,5 +1,7 @@
 .git
 .gitignore
+.github
+.gitattributes
 docs
 LICENSE
 README.md
