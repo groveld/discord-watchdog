@@ -4,7 +4,7 @@ const fs = require("fs");
 const Enmap = require("enmap");
 
 // Aliases and commands are put in collections where they can be read from.
-client.logger = require("./utils/logger");
+client.logger = require("./util/logger");
 client.settings = new Enmap();
 client.commands = new Enmap();
 client.aliases = new Enmap();
@@ -20,7 +20,7 @@ client.settings.default = {
   msgGoodbye: "**{{user}}** left the server. :sob:"
 }
 
-require("./utils/functions")(client);
+require("./modules/functions")(client);
 
 const init = async () => {
 

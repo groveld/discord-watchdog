@@ -2,7 +2,7 @@
 .gitignore
 .github
 .gitattributes
-docs
+unraid
 LICENSE
 README.md
 package-lock.json

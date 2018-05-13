@@ -7,6 +7,8 @@
  */
 
 exports.run = async (client, message, args, level) => {
+  let perms = message.member.permissions;
+  
   // const user = message.mentions.users.first();
   // const amount = Math.min((!!parseInt(args[0]) ? parseInt(args[0]) : parseInt(args[1])), 100);
 };
