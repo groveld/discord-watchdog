@@ -1,7 +1,7 @@
 FROM node:latest
 
 # add local files
-WORKDIR /app/discord-bot
+WORKDIR /app
 COPY package.json .
 RUN npm install
 COPY src .
