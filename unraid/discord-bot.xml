@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <Container version="2">
-  <Name>Discord-Bot</Name>
+  <Name>discord-bot</Name>
   <Repository>groveld/discord-bot</Repository>
   <Registry>https://hub.docker.com/r/groveld/discord-bot</Registry>
   <Network>bridge</Network>
@@ -18,5 +18,5 @@
   <Config Name="Session Salt" Target="bot_salt" Default="" Mode="" Description="Container Variable: bot_salt" Type="Variable" Display="always" Required="true" Mask="false"></Config>
   <Config Name="OAuth2 Callback URI" Target="bot_callback" Default="http://localhost:5000/callback" Mode="" Description="Container Variable: bot_callback" Type="Variable" Display="always" Required="true" Mask="false"></Config>
   <Config Name="Dashboard Port" Target="5000" Default="5000" Mode="tcp" Description="Container Port: 5000" Type="Port" Display="always" Required="true" Mask="false"></Config>
-  <Config Name="App Data Config Path" Target="/config" Default="/mnt/user/appdata/discord-bot" Mode="rw" Description="Container Path: /config" Type="Path" Display="advanced-hide" Required="true" Mask="false"></Config>
+  <Config Name="App Data Config Path" Target="/config" Default="/mnt/user/appdata" Mode="rw" Description="Container Path: /config" Type="Path" Display="advanced-hide" Required="true" Mask="false"></Config>
 </Container>
