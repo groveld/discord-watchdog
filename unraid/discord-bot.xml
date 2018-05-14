@@ -6,7 +6,7 @@
   <Network>bridge</Network>
   <Privileged>false</Privileged>
   <Support>https://discord.gg/2dV4xRN</Support>
-  <Project>https://github.com/groveld/discordjs-bot</Project>
+  <Project>https://github.com/groveld/discord-bot</Project>
   <Overview>Discord-Bot is a general-purpose Discord bot build with the Discord.js library.</Overview>
   <WebUI>http://[IP]:[PORT:5000]/</WebUI>
   <TemplateURL>https://raw.githubusercontent.com/groveld/discord-bot/master/unraid/discord-bot.xml</TemplateURL>
@@ -14,9 +14,9 @@
   <Description>Discord-Bot is a general-purpose Discord bot build with the Discord.js library.</Description>
   <Config Name="Bot Token" Target="bot_token" Default="" Mode="" Description="Container Variable: bot_token" Type="Variable" Display="always" Required="true" Mask="false"></Config>
   <Config Name="Bot OAuth2 Secret" Target="bot_secret" Default="" Mode="" Description="Container Variable: bot_secret" Type="Variable" Display="always" Required="true" Mask="false"></Config>
-  <Config Name="Owner ID" Target="bot_owner" Default="143720221977477120" Mode="" Description="Container Variable: bot_owner" Type="Variable" Display="always" Required="true" Mask="false"></Config>
+  <Config Name="Owner ID" Target="bot_owner" Default="" Mode="" Description="Container Variable: bot_owner" Type="Variable" Display="always" Required="true" Mask="false"></Config>
   <Config Name="Session Salt" Target="bot_salt" Default="" Mode="" Description="Container Variable: bot_salt" Type="Variable" Display="always" Required="true" Mask="false"></Config>
-  <Config Name="OAuth2 Callback URI" Target="bot_callback" Default="" Mode="" Description="Container Variable: bot_callback" Type="Variable" Display="always" Required="true" Mask="false"></Config>
+  <Config Name="OAuth2 Callback URI" Target="bot_callback" Default="http://localhost:5000/callback" Mode="" Description="Container Variable: bot_callback" Type="Variable" Display="always" Required="true" Mask="false"></Config>
   <Config Name="Dashboard Port" Target="5000" Default="5000" Mode="tcp" Description="Container Port: 5000" Type="Port" Display="always" Required="true" Mask="false"></Config>
-  <Config Name="AppData Config Path" Target="/config" Default="/mnt/user/appdata/discordjs-bot" Mode="rw" Description="Container Path: /config" Type="Path" Display="advanced-hide" Required="true" Mask="false"></Config>
+  <Config Name="App Data Config Path" Target="/config" Default="/mnt/user/appdata/discord-bot" Mode="rw" Description="Container Path: /config" Type="Path" Display="advanced-hide" Required="true" Mask="false"></Config>
 </Container>
