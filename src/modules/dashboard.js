@@ -110,7 +110,7 @@ module.exports = (client) => {
   app.use(helmet());
 
   // The domain name used in various endpoints to link between pages.
-  app.locals.domain = "localhost";
+  app.locals.domain = process.env.bot_domain;
 
   // The EJS templating engine gives us more power to create complex web pages.
   // This lets us have a separate header, footer, and "blocks" we can use in our pages.
@@ -171,7 +171,7 @@ module.exports = (client) => {
   // Here we check if the user was already on the page and redirect them
   // there, mostly.
   app.get("/callback", passport.authenticate("discord", { failureRedirect: "/autherror" }), (req, res) => {
-    if (req.user.id === client.appInfo.owner.id) {
+    if (req.user.id === process.env.bot_owner) {
       req.session.isAdmin = true;
     } else {
       req.session.isAdmin = false;
@@ -194,7 +194,7 @@ module.exports = (client) => {
   app.get("/logout", function(req, res) {
     req.session.destroy(() => {
       req.logout();
-      res.redirect("/"); //Inside a callback… bulletproof!
+      res.redirect("/");
     });
   });
 
@@ -210,172 +210,172 @@ module.exports = (client) => {
   });
 
 
-//   // The list of commands the bot has. Current **not filtered** by permission.
-//   app.get("/commands", (req, res) => {
-//     renderTemplate(res, req, "commands.ejs", {md});
-//   });
+  // The list of commands the bot has. Current **not filtered** by permission.
+  app.get("/commands", (req, res) => {
+    renderTemplate(res, req, "commands.ejs", {md});
+  });
 
-//   // Bot statistics. Notice that most of the rendering of data is done through this code,
-//   // not in the template, to simplify the page code. Most of it **could** be done on the page.
-//   app.get("/stats", (req, res) => {
-//     const duration = moment.duration(client.uptime).format(" D [days], H [hrs], m [mins], s [secs]");
-//     const members = client.guilds.reduce((p, c) => p + c.memberCount, 0);
-//     const textChannels = client.channels.filter(c => c.type === "text").size;
-//     const voiceChannels = client.channels.filter(c => c.type === "voice").size;
-//     const guilds = client.guilds.size;
-//     renderTemplate(res, req, "stats.ejs", {
-//       stats: {
-//         servers: guilds,
-//         members: members,
-//         text: textChannels,
-//         voice: voiceChannels,
-//         uptime: duration,
-//         memoryUsage: (process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2),
-//         dVersion: Discord.version,
-//         nVersion: process.version
-//       }
-//     });
-//   });
+  // Bot statistics. Notice that most of the rendering of data is done through this code,
+  // not in the template, to simplify the page code. Most of it **could** be done on the page.
+  app.get("/stats", (req, res) => {
+    const duration = moment.duration(client.uptime).format(" D [days], H [hrs], m [mins], s [secs]");
+    const members = client.guilds.reduce((p, c) => p + c.memberCount, 0);
+    const textChannels = client.channels.filter(c => c.type === "text").size;
+    const voiceChannels = client.channels.filter(c => c.type === "voice").size;
+    const guilds = client.guilds.size;
+    renderTemplate(res, req, "stats.ejs", {
+      stats: {
+        servers: guilds,
+        members: members,
+        text: textChannels,
+        voice: voiceChannels,
+        uptime: duration,
+        memoryUsage: (process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2),
+        dVersion: Discord.version,
+        nVersion: process.version
+      }
+    });
+  });
 
-//   app.get("/dashboard", checkAuth, (req, res) => {
-//     const perms = Discord.EvaluatedPermissions;
-//     renderTemplate(res, req, "dashboard.ejs", {perms});
-//   });
+  app.get("/dashboard", checkAuth, (req, res) => {
+    const perms = Discord.EvaluatedPermissions;
+    renderTemplate(res, req, "dashboard.ejs", {perms});
+  });
 
-//   // The Admin dashboard is similar to the one above, with the exception that
-//   // it shows all current guilds the bot is on, not *just* the ones the user has
-//   // access to. Obviously, this is reserved to the bot's owner for security reasons.
-//   app.get("/admin", checkAuth, (req, res) => {
-//     if (!req.session.isAdmin) return res.redirect("/");
-//     renderTemplate(res, req, "admin.ejs");
-//   });
+  // The Admin dashboard is similar to the one above, with the exception that
+  // it shows all current guilds the bot is on, not *just* the ones the user has
+  // access to. Obviously, this is reserved to the bot's owner for security reasons.
+  app.get("/admin", checkAuth, (req, res) => {
+    if (!req.session.isAdmin) return res.redirect("/");
+    renderTemplate(res, req, "admin.ejs");
+  });
 
-//   // Simple redirect to the "Settings" page (aka "manage")
-//   app.get("/dashboard/:guildID", checkAuth, (req, res) => {
-//     res.redirect(`/dashboard/${req.params.guildID}/manage`);
-//   });
+  // Simple redirect to the "Settings" page (aka "manage")
+  app.get("/dashboard/:guildID", checkAuth, (req, res) => {
+    res.redirect(`/dashboard/${req.params.guildID}/manage`);
+  });
 
-//   // Settings page to change the guild configuration. Definitely more fancy than using
-//   // the `set` command!
-//   app.get("/dashboard/:guildID/manage", checkAuth, (req, res) => {
-//     const guild = client.guilds.get(req.params.guildID);
-//     if (!guild) return res.status(404);
-//     const isManaged = guild && !!guild.member(req.user.id) ? guild.member(req.user.id).permissions.has("MANAGE_GUILD") : false;
-//     if (!isManaged && !req.session.isAdmin) res.redirect("/");
-//     renderTemplate(res, req, "guild/manage.ejs", {guild});
-//   });
+  // Settings page to change the guild configuration. Definitely more fancy than using
+  // the `set` command!
+  app.get("/dashboard/:guildID/manage", checkAuth, (req, res) => {
+    const guild = client.guilds.get(req.params.guildID);
+    if (!guild) return res.status(404);
+    const isManaged = guild && !!guild.member(req.user.id) ? guild.member(req.user.id).permissions.has("MANAGE_GUILD") : false;
+    if (!isManaged && !req.session.isAdmin) res.redirect("/");
+    renderTemplate(res, req, "guild/manage.ejs", {guild});
+  });
 
-//   // When a setting is changed, a POST occurs and this code runs
-//   // Once settings are saved, it redirects back to the settings page.
-//   app.post("/dashboard/:guildID/manage", checkAuth, (req, res) => {
-//     const guild = client.guilds.get(req.params.guildID);
-//     if (!guild) return res.status(404);
-//     const isManaged = guild && !!guild.member(req.user.id) ? guild.member(req.user.id).permissions.has("MANAGE_GUILD") : false;
-//     if (!isManaged && !req.session.isAdmin) res.redirect("/");
-//     client.writeSettings(guild.id, req.body);
-//     res.redirect("/dashboard/"+req.params.guildID+"/manage");
-//   });
+  // When a setting is changed, a POST occurs and this code runs
+  // Once settings are saved, it redirects back to the settings page.
+  app.post("/dashboard/:guildID/manage", checkAuth, (req, res) => {
+    const guild = client.guilds.get(req.params.guildID);
+    if (!guild) return res.status(404);
+    const isManaged = guild && !!guild.member(req.user.id) ? guild.member(req.user.id).permissions.has("MANAGE_GUILD") : false;
+    if (!isManaged && !req.session.isAdmin) res.redirect("/");
+    client.writeSettings(guild.id, req.body);
+    res.redirect("/dashboard/"+req.params.guildID+"/manage");
+  });
 
-//   // Displays the list of members on the guild (paginated).
-//   // NOTE: to be done, merge with manage and stats in a single UX page.
-//   app.get("/dashboard/:guildID/members", checkAuth, async (req, res) => {
-//     const guild = client.guilds.get(req.params.guildID);
-//     if (!guild) return res.status(404);
-//     renderTemplate(res, req, "guild/members.ejs", {
-//       guild: guild,
-//       members: guild.members.array()
-//     });
-//   });
+  // Displays the list of members on the guild (paginated).
+  // NOTE: to be done, merge with manage and stats in a single UX page.
+  app.get("/dashboard/:guildID/members", checkAuth, async (req, res) => {
+    const guild = client.guilds.get(req.params.guildID);
+    if (!guild) return res.status(404);
+    renderTemplate(res, req, "guild/members.ejs", {
+      guild: guild,
+      members: guild.members.array()
+    });
+  });
 
-//   // This JSON endpoint retrieves a partial list of members. This list can
-//   // be filtered, sorted, and limited to a partial count (for pagination).
-//   // NOTE: This is the most complex endpoint simply because of this filtering
-//   // otherwise it would be on the client side and that would be horribly slow.
-//   app.get("/dashboard/:guildID/members/list", checkAuth, async (req, res) => {
-//     const guild = client.guilds.get(req.params.guildID);
-//     if (!guild) return res.status(404);
-//     if (req.query.fetch) {
-//       await guild.fetchMembers();
-//     }
-//     const totals = guild.members.size;
-//     const start = parseInt(req.query.start, 10) || 0;
-//     const limit = parseInt(req.query.limit, 10) || 50;
-//     let members = guild.members;
+  // This JSON endpoint retrieves a partial list of members. This list can
+  // be filtered, sorted, and limited to a partial count (for pagination).
+  // NOTE: This is the most complex endpoint simply because of this filtering
+  // otherwise it would be on the client side and that would be horribly slow.
+  app.get("/dashboard/:guildID/members/list", checkAuth, async (req, res) => {
+    const guild = client.guilds.get(req.params.guildID);
+    if (!guild) return res.status(404);
+    if (req.query.fetch) {
+      await guild.fetchMembers();
+    }
+    const totals = guild.members.size;
+    const start = parseInt(req.query.start, 10) || 0;
+    const limit = parseInt(req.query.limit, 10) || 50;
+    let members = guild.members;
 
-//     if (req.query.filter && req.query.filter !== "null") {
-//       //if (!req.query.filtervalue) return res.status(400);
-//       members = members.filter(m=> {
-//         m = req.query.filterUser ? m.user : m;
-//         return m["displayName"].toLowerCase().includes(req.query.filter.toLowerCase());
-//       });
-//     }
+    if (req.query.filter && req.query.filter !== "null") {
+      //if (!req.query.filtervalue) return res.status(400);
+      members = members.filter(m=> {
+        m = req.query.filterUser ? m.user : m;
+        return m["displayName"].toLowerCase().includes(req.query.filter.toLowerCase());
+      });
+    }
 
-//     if (req.query.sortby) {
-//       members = members.sort((a, b) => a[req.query.sortby] > b[req.query.sortby]);
-//     }
-//     const memberArray = members.array().slice(start, start+limit);
+    if (req.query.sortby) {
+      members = members.sort((a, b) => a[req.query.sortby] > b[req.query.sortby]);
+    }
+    const memberArray = members.array().slice(start, start+limit);
 
-//     const returnObject = [];
-//     for (let i = 0; i < memberArray.length; i++) {
-//       const m = memberArray[i];
-//       returnObject.push({
-//         id: m.id,
-//         status: m.user.presence.status,
-//         bot: m.user.bot,
-//         username: m.user.username,
-//         displayName: m.displayName,
-//         tag: m.user.tag,
-//         discriminator: m.user.discriminator,
-//         joinedAt: m.joinedTimestamp,
-//         createdAt: m.user.createdTimestamp,
-//         highestRole: {
-//           hexColor: m.highestRole.hexColor
-//         },
-//         memberFor: moment.duration(Date.now() - m.joinedAt).format(" D [days], H [hrs], m [mins], s [secs]"),
-//         roles: m.roles.map(r=>({
-//           name: r.name,
-//           id: r.id,
-//           hexColor: r.hexColor
-//         }))
-//       });
-//     }
-//     res.json({
-//       total: totals,
-//       page: (start/limit)+1,
-//       pageof: Math.ceil(members.size / limit),
-//       members: returnObject
-//     });
-//   });
+    const returnObject = [];
+    for (let i = 0; i < memberArray.length; i++) {
+      const m = memberArray[i];
+      returnObject.push({
+        id: m.id,
+        status: m.user.presence.status,
+        bot: m.user.bot,
+        username: m.user.username,
+        displayName: m.displayName,
+        tag: m.user.tag,
+        discriminator: m.user.discriminator,
+        joinedAt: m.joinedTimestamp,
+        createdAt: m.user.createdTimestamp,
+        highestRole: {
+          hexColor: m.highestRole.hexColor
+        },
+        memberFor: moment.duration(Date.now() - m.joinedAt).format(" D [days], H [hrs], m [mins], s [secs]"),
+        roles: m.roles.map(r=>({
+          name: r.name,
+          id: r.id,
+          hexColor: r.hexColor
+        }))
+      });
+    }
+    res.json({
+      total: totals,
+      page: (start/limit)+1,
+      pageof: Math.ceil(members.size / limit),
+      members: returnObject
+    });
+  });
 
-//   // Displays general guild statistics.
-//   app.get("/dashboard/:guildID/stats", checkAuth, (req, res) => {
-//     const guild = client.guilds.get(req.params.guildID);
-//     if (!guild) return res.status(404);
-//     const isManaged = guild && !!guild.member(req.user.id) ? guild.member(req.user.id).permissions.has("MANAGE_GUILD") : false;
-//     if (!isManaged && !req.session.isAdmin) res.redirect("/");
-//     renderTemplate(res, req, "guild/stats.ejs", {guild});
-//   });
+  // Displays general guild statistics.
+  app.get("/dashboard/:guildID/stats", checkAuth, (req, res) => {
+    const guild = client.guilds.get(req.params.guildID);
+    if (!guild) return res.status(404);
+    const isManaged = guild && !!guild.member(req.user.id) ? guild.member(req.user.id).permissions.has("MANAGE_GUILD") : false;
+    if (!isManaged && !req.session.isAdmin) res.redirect("/");
+    renderTemplate(res, req, "guild/stats.ejs", {guild});
+  });
 
-//   // Leaves the guild (this is triggered from the manage page, and only
-//   // from the modal dialog)
-//   app.get("/dashboard/:guildID/leave", checkAuth, async (req, res) => {
-//     const guild = client.guilds.get(req.params.guildID);
-//     if (!guild) return res.status(404);
-//     const isManaged = guild && !!guild.member(req.user.id) ? guild.member(req.user.id).permissions.has("MANAGE_GUILD") : false;
-//     if (!isManaged && !req.session.isAdmin) res.redirect("/");
-//     await guild.leave();
-//     res.redirect("/dashboard");
-//   });
+  // Leaves the guild (this is triggered from the manage page, and only
+  // from the modal dialog)
+  app.get("/dashboard/:guildID/leave", checkAuth, async (req, res) => {
+    const guild = client.guilds.get(req.params.guildID);
+    if (!guild) return res.status(404);
+    const isManaged = guild && !!guild.member(req.user.id) ? guild.member(req.user.id).permissions.has("MANAGE_GUILD") : false;
+    if (!isManaged && !req.session.isAdmin) res.redirect("/");
+    await guild.leave();
+    res.redirect("/dashboard");
+  });
 
-//   // Resets the guild's settings to the defaults, by simply deleting them.
-//   app.get("/dashboard/:guildID/reset", checkAuth, async (req, res) => {
-//     const guild = client.guilds.get(req.params.guildID);
-//     if (!guild) return res.status(404);
-//     const isManaged = guild && !!guild.member(req.user.id) ? guild.member(req.user.id).permissions.has("MANAGE_GUILD") : false;
-//     if (!isManaged && !req.session.isAdmin) res.redirect("/");
-//     client.settings.delete(guild.id);
-//     res.redirect("/dashboard/"+req.params.guildID);
-//   });
+  // Resets the guild's settings to the defaults, by simply deleting them.
+  app.get("/dashboard/:guildID/reset", checkAuth, async (req, res) => {
+    const guild = client.guilds.get(req.params.guildID);
+    if (!guild) return res.status(404);
+    const isManaged = guild && !!guild.member(req.user.id) ? guild.member(req.user.id).permissions.has("MANAGE_GUILD") : false;
+    if (!isManaged && !req.session.isAdmin) res.redirect("/");
+    client.settings.delete(guild.id);
+    res.redirect("/dashboard/"+req.params.guildID);
+  });
 
   client.site = app.listen(process.env.bot_port);
 };

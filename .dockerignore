@@ -2,7 +2,7 @@
 .gitignore
 .github
 .gitattributes
-unraid
+discord-bot.xml
 LICENSE
 README.md
 package-lock.json
