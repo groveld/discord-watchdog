@@ -4,7 +4,7 @@ FROM node:latest
 WORKDIR /app
 COPY package.json .
 RUN npm install
-COPY src .
+COPY app .
 
 # ports and volumes
 EXPOSE 5000

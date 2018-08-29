@@ -4,6 +4,7 @@ DASHBOARD EXAMPLE
   Install the following for dashboard stuff.
   npm install body-parser ejs express express-passport express-session
   npm install level-session-store marked passport passport-discord
+  npm install helmet moment-duration-format
 
 This is a very simple dashboard example, but even in its simple state, there are still a
 lot of moving parts working together to make this a reality. I shall attempt to explain
@@ -36,7 +37,7 @@ require("moment-duration-format");
 // (so that when you come back to the page, it still remembers you're logged in).
 const passport = require("passport");
 const session = require("express-session");
-const LevelStore = require("level-session-store")(session);
+// const LevelStore = require("level-session-store")(session);
 const Strategy = require("passport-discord").Strategy;
 
 // Helmet is specifically a security plugin that enables some specific, useful
@@ -86,8 +87,8 @@ module.exports = (client) => {
   */
   passport.use(new Strategy({
     clientID: client.user.id,
-    clientSecret: process.env.bot_secret,
-    callbackURL: process.env.bot_callback,
+    clientSecret: process.env.BOT_SECRET,
+    callbackURL: process.env.BOT_CALLBACK,
     scope: ["identify", "guilds"]
   },
   (accessToken, refreshToken, profile, done) => {
@@ -98,8 +99,8 @@ module.exports = (client) => {
   // Session data, used for temporary storage of your visitor's session information.
   // the `secret` is in fact a "salt" for the data, and should not be shared publicly.
   app.use(session({
-    store: new LevelStore(process.env.bot_config + "/session/"),
-    secret: process.env.bot_salt,
+    // store: new LevelStore("../config/session/"),
+    secret: process.env.BOT_SALT,
     resave: false,
     saveUninitialized: false,
   }));
@@ -110,7 +111,7 @@ module.exports = (client) => {
   app.use(helmet());
 
   // The domain name used in various endpoints to link between pages.
-  app.locals.domain = process.env.bot_domain;
+  app.locals.domain = "discord.groveld.com";
 
   // The EJS templating engine gives us more power to create complex web pages.
   // This lets us have a separate header, footer, and "blocks" we can use in our pages.
@@ -171,7 +172,7 @@ module.exports = (client) => {
   // Here we check if the user was already on the page and redirect them
   // there, mostly.
   app.get("/callback", passport.authenticate("discord", { failureRedirect: "/autherror" }), (req, res) => {
-    if (req.user.id === process.env.bot_owner) {
+    if (req.user.id === process.env.BOT_OWNER) {
       req.session.isAdmin = true;
     } else {
       req.session.isAdmin = false;
@@ -377,5 +378,5 @@ module.exports = (client) => {
     res.redirect("/dashboard/"+req.params.guildID);
   });
 
-  client.site = app.listen(process.env.bot_port);
+  client.site = app.listen(process.env.BOT_PORT);
 };

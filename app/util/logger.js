@@ -29,7 +29,7 @@ var logger = new winston.Logger({
   transports: [
     new winston.transports.File({
       level: "debug",
-      filename: `${process.env.bot_config}/discordjs-bot.log`,
+      filename: "../config/discord-bot.log",
       handleExceptions: true,
       json: false,
       maxsize: 5242880, //5MB

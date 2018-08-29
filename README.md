@@ -4,11 +4,11 @@ A General Purpose Node.js Discord Bot.
 
 This is my personal bot code, and though I put it online with this nice readme for you to install and use it, I can't cater to other people's requests or desires. I update this when I feel like it with the features I want and I make breaking changes without consideration for other people's installations.
 
-[Discord Server](https://discord.gg/2dV4xRN)
+[Join Discord Server](https://discord.gg/2dV4xRN)
 
-[Invite Discord-Bot](https://discordapp.com/oauth2/authorize?&client_id=306182346929995778&scope=bot&permissions=2146958583)
+[Invite Discord-Bot](https://discordapp.com/oauth2/authorize?&client_id=431381992081326081&scope=bot&permissions=2146958839)
 
-[Control Panel](https://cloud.groveld.com/)
+[Bot Control Panel](https://discord.groveld.com/)
 
 ## Features
 
@@ -24,4 +24,6 @@ This is my personal bot code, and though I put it online with this nice readme f
 
 ## ToDo
 
-- Auto execute commands at defined times/intervals.
+- Add and remove roles to users if Moderator or Admin.
+- Assign roles to users after being online for an X amount time.
+- Auto execute commands at defined times/intervals. (Birthday messages, server lockdown)

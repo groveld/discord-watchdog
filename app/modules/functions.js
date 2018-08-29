@@ -9,7 +9,7 @@ module.exports = (client) => {
     if (modRole && message.member.roles.has(modRole.id)) permlvl = 3; // Moderator
     if (adminRole && message.member.roles.has(adminRole.id)) permlvl = 4; // Administrator
     if (message.author.id === message.guild.owner.id) permlvl = 5; // Guild Owner
-    if (message.author.id === process.env.bot_owner) permlvl = 10; // Bot Owner
+    if (message.author.id === process.env.BOT_OWNER) permlvl = 10; // Bot Owner
     return permlvl;
   };
 
@@ -79,7 +79,7 @@ module.exports = (client) => {
     text = text
       .replace(/`/g, "`" + String.fromCharCode(8203))
       .replace(/@/g, "@" + String.fromCharCode(8203))
-      .replace(process.env.bot_token, "mfa.VkO_2G4Qv3T--NO--lWetW_tjND--TOKEN--QFTm6YGtzq9PH--4U--tG0");
+      .replace(process.env.BOT_TOKEN, "mfa.VkO_2G4Qv3T--NO--lWetW_tjND--TOKEN--QFTm6YGtzq9PH--4U--tG0");
 
     return text;
   };

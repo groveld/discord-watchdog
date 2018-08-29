@@ -54,7 +54,7 @@ const init = async () => {
     });
   });
 
-  client.login(process.env.bot_token).catch(err => client.logger.error(err.message));
+  client.login(process.env.BOT_TOKEN).catch(err => client.logger.error(err.message));
 };
 
 init();
