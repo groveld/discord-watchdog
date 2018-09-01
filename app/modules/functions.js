@@ -1,8 +1,8 @@
 module.exports = (client) => {
   // This function should resolve to an ELEVATION level which
   // is then sent to the command handler for verification.
-  client.elevation = message => {
-    const settings = client.settings.findOne({ where: { guild: message.guild.id } });
+  client.elevation = async (message) => {
+    const settings = await client.settings.findOne({ where: { guild: message.guild.id } });
     const modRole = message.guild.roles.find("name", settings.modRole);
     const adminRole = message.guild.roles.find("name", settings.adminRole);
     let permlvl = 0; // Anyone
@@ -147,9 +147,9 @@ module.exports = (client) => {
     client.logger.warn(warning)
   });
 
-  // client.on("debug", debug => {
-  //   client.logger.debug(debug)
-  // });
+  client.on("debug", debug => {
+    client.logger.debug(debug)
+  });
 
   process.on("uncaughtException", err => {
     const errorMsg = err.stack.replace(new RegExp(`${__dirname}/`, "g"), "./");
