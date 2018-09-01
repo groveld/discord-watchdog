@@ -5,7 +5,9 @@
   "main": "app/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cd app && node index.js"
+    "start": "cd app && node index.js",
+    "docker-build": "docker build -t groveld/discord-bot .",
+    "docker-push": "docker push groveld/discord-bot"
   },
   "keywords": [
     "nodejs",
