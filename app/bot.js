@@ -20,8 +20,7 @@ client.settings = sequelize.define("guilds", {
   msgEnabled: { type: Sequelize.BOOLEAN, defaultValue: true },
   msgChannel: { type: Sequelize.STRING, defaultValue: "general" },
   msgWelcome: { type: Sequelize.STRING, defaultValue: "**{{user}}** joined the server. :tada:" },
-  msgGoodbye: { type: Sequelize.STRING, defaultValue: "**{{user}}** left the server. :sob:" },
-  swearWords: { type: Sequelize.JSON, defaultValue: "fuck" }
+  msgGoodbye: { type: Sequelize.STRING, defaultValue: "**{{user}}** left the server. :sob:" }
 });
 
 sequelize.sync();

@@ -2,7 +2,7 @@ module.exports = (client) => {
   // This function should resolve to an ELEVATION level which
   // is then sent to the command handler for verification.
   client.elevation = message => {
-    const settings = await client.settings.findOne({ where: { guild: message.guild.id } });
+    const settings = client.settings.findOne({ where: { guild: message.guild.id } });
     const modRole = message.guild.roles.find("name", settings.modRole);
     const adminRole = message.guild.roles.find("name", settings.adminRole);
     let permlvl = 0; // Anyone

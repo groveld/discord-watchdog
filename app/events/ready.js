@@ -6,8 +6,10 @@ module.exports = async client => {
   require("../modules/dashboard.js")(client);
 
   // We check for any guilds added while the bot was offline, if any were, they get a default configuration.
-  // client.guilds.filter(g => !client.settings.findOne(g.id)).forEach(g => client.settings.({ guild: g.id }));
-  // client.guilds.filter(g => client.settings.findAll({ attributes: ['guild'] })).forEach(g => client.logger.info(g.id));
+  const offline = await client.settings.findAll({ attributes: ['guild'] }).map(t => parseInt(t.guild));
+  const online = client.guilds.map(t => parseInt(t.id));
+  online.filter(g => !offline.includes(g)).forEach(g => client.settings.create({ guild: g }));
+  offline.filter(g => !online.includes(g)).forEach(g => client.settings.destroy({ where: { guild: g } }));
 
   // Set the game as the default help command + guild count.
   client.user.setPresence({game: {name: `How can i help you?`, type:0}});
