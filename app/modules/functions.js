@@ -2,7 +2,7 @@ module.exports = (client) => {
   // This function should resolve to an ELEVATION level which
   // is then sent to the command handler for verification.
   client.elevation = message => {
-    const settings = client.settings.get(message.guild.id);
+    const settings = await client.settings.findOne({ where: { guild: message.guild.id } });
     const modRole = message.guild.roles.find("name", settings.modRole);
     const adminRole = message.guild.roles.find("name", settings.adminRole);
     let permlvl = 0; // Anyone
@@ -25,7 +25,7 @@ module.exports = (client) => {
   // client.permlevel = message => {
   //   let permlvl = 0;
 
-  //   const permOrder = client.config.permLevels.slice(0).sort((p, c) => p.level < c.level ? 1 : -1);
+  //   const permOrder = client.settings.permLevels.slice(0).sort((p, c) => p.level < c.level ? 1 : -1);
 
   //   while (permOrder.length) {
   //     const currentLevel = permOrder.shift();

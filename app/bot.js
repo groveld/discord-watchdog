@@ -2,23 +2,35 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const fs = require("fs");
 const Enmap = require("enmap");
+const Sequelize = require('sequelize');
+
+const sequelize = new Sequelize('null', 'null', 'null', {
+  dialect: 'sqlite',
+  logging: false,
+  operatorsAliases: false,
+  storage: '../config/database.sqlite'
+});
+
+client.settings = sequelize.define("guilds", {
+  guild: { type: Sequelize.INTEGER, primaryKey: true, unique: true },
+  prefix: { type: Sequelize.STRING, defaultValue: "!" },
+  logChannel: { type: Sequelize.STRING, defaultValue: "logs" },
+  modRole: { type: Sequelize.STRING, defaultValue: "Moderator" },
+  adminRole: { type: Sequelize.STRING, defaultValue: "Admin" },
+  msgEnabled: { type: Sequelize.BOOLEAN, defaultValue: true },
+  msgChannel: { type: Sequelize.STRING, defaultValue: "general" },
+  msgWelcome: { type: Sequelize.STRING, defaultValue: "**{{user}}** joined the server. :tada:" },
+  msgGoodbye: { type: Sequelize.STRING, defaultValue: "**{{user}}** left the server. :sob:" },
+  swearWords: { type: Sequelize.JSON, defaultValue: "fuck" }
+});
+
+sequelize.sync();
 
 // Aliases and commands are put in collections where they can be read from.
 client.logger = require("./util/logger");
-client.settings = new Enmap();
+// client.settings = new Enmap();
 client.commands = new Enmap();
 client.aliases = new Enmap();
-
-client.settings.default = {
-  prefix: "!",
-  logChannel: "log",
-  modRole: "moderators",
-  adminRole: "staff",
-  msgEnabled: true,
-  msgChannel: "general",
-  msgWelcome: "**{{user}}** joined the server. :tada:",
-  msgGoodbye: "**{{user}}** left the server. :sob:"
-}
 
 require("./modules/functions")(client);
 

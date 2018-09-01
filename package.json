@@ -4,6 +4,7 @@
   "description": "A General Purpose Discord.js Bot.",
   "main": "app/index.js",
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "cd app && node index.js"
   },
   "keywords": [
@@ -39,6 +40,8 @@
     "node-opus": "^0.2.7",
     "passport": "^0.4.0",
     "passport-discord": "^0.1.3",
+    "sequelize": "^4.38.0",
+    "sqlite3": "^4.0.2",
     "winston": "^2.4.1"
   }
 }

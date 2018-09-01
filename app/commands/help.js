@@ -1,6 +1,6 @@
 exports.run = async (client, message, args) => {
   // Load the guild's settings.
-  const settings = client.settings.get(message.guild.id);
+  const settings = await client.settings.findOne({ where: { guild: message.guild.id } });
 
   if (!args[0]) {
     const commandNames = Array.from(client.commands.keys());

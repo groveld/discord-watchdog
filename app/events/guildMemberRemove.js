@@ -3,7 +3,7 @@ module.exports = async (client, member) => {
   if (member.id === member.client.user.id) return;
 
   // Load the guild's settings.
-  const settings = client.settings.get(member.guild.id);
+  const settings = await client.settings.findOne({ where: { guild: member.guild.id } });
 
   // If msgEnabled is off, don't proceed.
   if (settings.msgEnabled !== true) return;

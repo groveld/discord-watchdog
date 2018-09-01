@@ -2,7 +2,8 @@ module.exports = async (client, message) => {
   // This stops if it's not a guild (obviously), and we ignore all bots.
   if(!message.guild || message.author.bot) return;
 
-  const settings = client.settings.get(message.guild.id);
+  // const settings = client.settings.get(message.guild.id);
+  const settings = await client.settings.findOne({ where: { guild: message.guild.id } });
   const command = message.content.split(" ")[0].slice(settings.prefix.length);
   const params = message.content.split(" ").slice(1);
   const perms = client.elevation(message);
