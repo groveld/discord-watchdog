@@ -1,22 +1,76 @@
 <?xml version="1.0"?>
 <Container version="2">
-  <Name>discord-bot</Name>
+  <Name>Discord Bot</Name>
   <Repository>groveld/discord-bot</Repository>
   <Registry>https://hub.docker.com/r/groveld/discord-bot</Registry>
   <Network>bridge</Network>
+  <MyIP/>
+  <Shell>sh</Shell>
   <Privileged>false</Privileged>
   <Support>https://discord.gg/2dV4xRN</Support>
-  <Project>https://github.com/groveld/discord-bot</Project>
-  <Overview>Discord-Bot is a general-purpose Discord bot build with the Discord.js library.</Overview>
+  <Project>https://github.com/groveld/discordjs-bot</Project>
+  <Overview>Discordjs-Bot is a general-purpose Discord bot build with the Discord.js library.</Overview>
+  <Category>Other:</Category>
   <WebUI>http://[IP]:[PORT:5000]/</WebUI>
   <TemplateURL>https://raw.githubusercontent.com/groveld/discord-bot/master/discord-bot.xml</TemplateURL>
-  <Icon>https://raw.githubusercontent.com/groveld/discord-bot/master/src/dashboard/public/images/discord-bot.png</Icon>
-  <Description>Discord-Bot is a general-purpose Discord bot build with the Discord.js library.</Description>
+  <Icon>https://raw.githubusercontent.com/groveld/discord-bot/master/discord-bot.png</Icon>
+  <ExtraParams/>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled></DateInstalled>
+  <DonateText>Donate</DonateText>
+  <DonateLink/>
+  <Description>Discordjs-Bot is a general-purpose Discord bot build with the Discord.js library.</Description>
+  <Networking>
+    <Mode>bridge</Mode>
+    <Publish>
+      <Port>
+        <HostPort>5000</HostPort>
+        <ContainerPort>5000</ContainerPort>
+        <Protocol>tcp</Protocol>
+      </Port>
+    </Publish>
+  </Networking>
+  <Data>
+    <Volume>
+      <HostDir>/mnt/user/appdata/discordbot</HostDir>
+      <ContainerDir>/config</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+  </Data>
+  <Environment>
+    <Variable>
+      <Value/>
+      <Name>BOT_TOKEN</Name>
+      <Mode/>
+    </Variable>
+    <Variable>
+      <Value/>
+      <Name>BOT_SECRET</Name>
+      <Mode/>
+    </Variable>
+    <Variable>
+      <Value/>
+      <Name>BOT_OWNER</Name>
+      <Mode/>
+    </Variable>
+    <Variable>
+      <Value/>
+      <Name>BOT_SALT</Name>
+      <Mode/>
+    </Variable>
+    <Variable>
+      <Value/>
+      <Name>BOT_CALLBACK</Name>
+      <Mode/>
+    </Variable>
+  </Environment>
+  <Labels/>
+  <Config Name="Token" Target="BOT_TOKEN" Default="" Mode="" Description="Container Variable: BOT_TOKEN" Type="Variable" Display="always" Required="true" Mask="false"></Config>
+  <Config Name="Client Secret" Target="BOT_SECRET" Default="" Mode="" Description="Container Variable: BOT_SECRET" Type="Variable" Display="always" Required="true" Mask="false"></Config>
   <Config Name="Owner ID" Target="BOT_OWNER" Default="" Mode="" Description="Container Variable: BOT_OWNER" Type="Variable" Display="always" Required="true" Mask="false"></Config>
-  <Config Name="Bot Token" Target="BOT_TOKEN" Default="" Mode="" Description="Container Variable: BOT_TOKEN" Type="Variable" Display="always" Required="true" Mask="false"></Config>
-  <Config Name="OAuth2 Secret" Target="BOT_SECRET" Default="" Mode="" Description="Container Variable: BOT_SECRET" Type="Variable" Display="always" Required="true" Mask="false"></Config>
   <Config Name="Session Salt" Target="BOT_SALT" Default="" Mode="" Description="Container Variable: BOT_SALT" Type="Variable" Display="always" Required="true" Mask="false"></Config>
-  <Config Name="Callback URL" Target="BOT_CALLBACK" Default="https://discord.groveld.com/callback" Mode="" Description="Container Variable: BOT_CALLBACK" Type="Variable" Display="always" Required="true" Mask="false"></Config>
-  <Config Name="Container Port" Target="5000" Default="5000" Mode="tcp" Description="Container Port: 5000" Type="Port" Display="always" Required="true" Mask="false"></Config>
-  <Config Name="AppData Config Path" Target="/config" Default="/mnt/user/appdata/discord-bot" Mode="rw" Description="Container Path: /config" Type="Path" Display="advanced-hide" Required="true" Mask="false"></Config>
+  <Config Name="Callback URL" Target="BOT_CALLBACK" Default="" Mode="" Description="Container Variable: BOT_CALLBACK" Type="Variable" Display="always" Required="true" Mask="false"></Config>
+  <Config Name="Container Port" Target="5000" Default="5000" Mode="tcp" Description="Container Port: 5000" Type="Port" Display="always" Required="true" Mask="false">5000</Config>
+  <Config Name="AppData Config Path" Target="/config" Default="/mnt/user/appdata/discordjs-bot" Mode="rw" Description="Container Path: /config" Type="Path" Display="advanced-hide" Required="true" Mask="false"></Config>
 </Container>
