@@ -1,5 +1,5 @@
 FROM node:8.15-alpine
-MAINTAINER Martin Groeneveld <martin@groveld.com>
+MAINTAINER groveld
 
 # add local files
 WORKDIR /app
