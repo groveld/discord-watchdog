@@ -1,4 +1,4 @@
-FROM node:latest
+FROM node:8.15-alpine
 
 # add local files
 WORKDIR /app
