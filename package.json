@@ -25,7 +25,7 @@
   "bugs": {
     "url": "https://github.com/groveld/discord-bot/issues"
   },
-  "homepage": "https://www.groveld.com/discord-bot/",
+  "homepage": "https://github.com/groveld/discord-bot",
   "dependencies": {
     "body-parser": "^1.18.3",
     "chalk": "^2.3.2",
