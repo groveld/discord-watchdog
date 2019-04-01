@@ -12,4 +12,4 @@ VOLUME /config
 EXPOSE 5000
 
 # start app
-CMD [ "node", "index.js" ]
+CMD ["node", "index.js"]
