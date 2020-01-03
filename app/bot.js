@@ -8,7 +8,7 @@ const sequelize = new Sequelize('null', 'null', 'null', {
   dialect: 'sqlite',
   logging: false,
   operatorsAliases: false,
-  storage: '../config/database.sqlite'
+  storage: '../config/watchdog.sqlite'
 });
 
 client.settings = sequelize.define("guilds", {

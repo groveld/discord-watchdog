@@ -1,5 +1,5 @@
 {
-  "name": "discord-bot",
+  "name": "discord-watchdog",
   "version": "0.1.0",
   "description": "A General Purpose Discord.js Bot.",
   "main": "app/index.js",
