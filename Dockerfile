@@ -1,4 +1,4 @@
-FROM node:alpine
+FROM node:8.15-alpine
 LABEL maintainer="Martin Groeneveld <martin@groveld.com>"
 
 # Create app directory
