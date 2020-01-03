@@ -8,7 +8,7 @@ This is my personal bot code, and though I put it online with this nice readme f
 
 [Invite Discord-Bot](https://discordapp.com/oauth2/authorize?&client_id=431381992081326081&scope=bot&permissions=2146958839)
 
-[Bot Control Panel](https://discord.groveld.com/)
+[Bot Control Panel](https://watchdog.groveld.com/)
 
 ## Features
 
