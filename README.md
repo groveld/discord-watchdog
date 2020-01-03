@@ -1,4 +1,4 @@
-# Discord-Bot
+# Discord-WatchDog
 
 A General Purpose Node.js Discord Bot.
 
