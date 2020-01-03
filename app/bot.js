@@ -35,6 +35,20 @@ require("./modules/functions")(client);
 
 const init = async () => {
 
+  // Then we load events, which will include our message and ready event.
+  fs.readdir("./events/", (err, files) => {
+    if (err) client.logger.error(err);
+    client.logger.info(`Loading a total of ${files.length} events.`);
+    files.forEach(file => {
+      if(file.split(".").slice(-1)[0] !== "js") return;
+      const eventName = file.split(".")[0];
+      const event = require(`./events/${file}`);
+      client.logger.debug("Loading event:", eventName);
+      client.on(eventName, event.bind(null, client));
+      delete require.cache[require.resolve(`./events/${file}`)];
+    });
+  });
+
   // Load commands as a collection, so they're accessible here and everywhere else.
   fs.readdir("./commands/", (err, files) => {
     if (err) client.logger.error(err);
@@ -48,20 +62,6 @@ const init = async () => {
       props.conf.aliases.forEach(alias => {
         client.aliases.set(alias, props.help.name);
       });
-    });
-  });
-
-  // Then we load events, which will include our message and ready event.
-  fs.readdir("./events/", (err, files) => {
-    if (err) client.logger.error(err);
-    client.logger.info(`Loading a total of ${files.length} events.`);
-    files.forEach(file => {
-      if(file.split(".").slice(-1)[0] !== "js") return;
-      const eventName = file.split(".")[0];
-      const event = require(`./events/${file}`);
-      client.logger.debug("Loading event:", eventName);
-      client.on(eventName, event.bind(null, client));
-      delete require.cache[require.resolve(`./events/${file}`)];
     });
   });
 

@@ -1,9 +1,8 @@
 .git
-.gitignore
-.github
 .gitattributes
+.gitignore
 config
-discord-bot.xml
+unraid
 LICENSE
 README.md
 package-lock.json

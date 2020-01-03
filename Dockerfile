@@ -1,15 +1,19 @@
-FROM node:8.15-alpine
-MAINTAINER groveld
+FROM node:alpine
+LABEL maintainer="Martin Groeneveld <martin@groveld.com>"
 
-# add local files
+# Create app directory
 WORKDIR /app
-COPY package.json .
+
+# Install app dependencies
+COPY package*.json .
 RUN npm install
+
+# Bundle app source files
 COPY app .
 
-# ports and volumes
+# Define ports and volumes
+EXPOSE 5000/tcp
 VOLUME /config
-EXPOSE 5000
 
-# start app
+# Start app
 CMD ["node", "index.js"]
