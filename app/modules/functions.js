@@ -87,7 +87,7 @@ module.exports = (client) => {
   // client.loadCommand = (commandName) => {
   //   try {
   //     const props = require(`../commands/${commandName}`);
-  //     client.logger.log(`Loading Command: ${props.help.name}. 👌`);
+  //     client.log.log(`Loading Command: ${props.help.name}. 👌`);
   //     if (props.init) {
   //       props.init(client);
   //     }
@@ -140,25 +140,25 @@ module.exports = (client) => {
   client.wait = require("util").promisify(setTimeout);
 
   client.on("error", error => {
-    client.logger.error(error)
+    client.log.error(error)
   });
 
   client.on("warn", warning => {
-    client.logger.warn(warning)
+    client.log.warn(warning)
   });
 
   client.on("debug", debug => {
-    client.logger.debug(debug)
+    client.log.debug(debug)
   });
 
   process.on("uncaughtException", err => {
     const errorMsg = err.stack.replace(new RegExp(`${__dirname}/`, "g"), "./");
-    client.logger.error("Uncaught Exception: ", errorMsg);
+    client.log.error("Uncaught Exception: ", errorMsg);
     process.exit(1);
   });
 
   process.on("unhandledRejection", err => {
-    client.logger.error("Unhandled rejection: ", err.stack);
+    client.log.error("Unhandled rejection: ", err.stack);
     process.exit(1);
   });
 

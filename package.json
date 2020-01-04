@@ -2,12 +2,13 @@
   "name": "discord-watchdog",
   "version": "0.1.0",
   "description": "A General Purpose Discord.js Bot.",
-  "main": "app/index.js",
+  "main": "app/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cd app && node index.js",
-    "docker-build": "docker build -t groveld/discord-watchdog .",
-    "docker-push": "docker push groveld/discord-watchdog"
+    "start": "cd app && node app.js",
+    "dev": "cd app && node -r dotenv/config app.js dotenv_config_path=../.env",
+    "docker-build": "docker build -t groveld/discord-watchdog:dev .",
+    "docker-push": "docker push groveld/discord-watchdog:dev"
   },
   "keywords": [
     "nodejs",
@@ -44,5 +45,8 @@
     "sequelize": ">=5.3.0",
     "sqlite3": "^4.0.2",
     "winston": "^2.4.1"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0"
   }
 }

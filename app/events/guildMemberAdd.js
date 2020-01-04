@@ -12,5 +12,5 @@ module.exports = async (client, member) => {
   const msgWelcome = settings.msgWelcome.replace("{{user}}", member.user.tag);
 
   // Send the welcome message to the welcome channel.
-  member.guild.channels.find("name", settings.msgChannel).send(msgWelcome).catch(err => client.logger.error(err.message));
+  member.guild.channels.find("name", settings.msgChannel).send(msgWelcome).catch(err => client.log.error(err.message));
 };

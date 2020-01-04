@@ -1,3 +1,3 @@
 module.exports = async (client, replayed) => {
-  client.logger.info("Connection to Discord resumed.");
+  client.log.info("Connection to Discord resumed.");
 };

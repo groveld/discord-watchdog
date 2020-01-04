@@ -1,3 +1,3 @@
 module.exports = async client => {
-  client.logger.warn("Reconnecting to Discord...");
+  client.log.warn("Reconnecting to Discord...");
 };

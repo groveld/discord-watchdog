@@ -1,26 +1,26 @@
 <?xml version="1.0"?>
 <Container version="2">
-  <Name>Discord Bot</Name>
-  <Repository>groveld/discord-bot</Repository>
-  <Registry>https://hub.docker.com/r/groveld/discord-bot</Registry>
+  <Name>WatchDog</Name>
+  <Repository>groveld/discord-watchdog</Repository>
+  <Registry>https://hub.docker.com/r/groveld/discord-watchdog</Registry>
   <Network>bridge</Network>
   <MyIP/>
   <Shell>sh</Shell>
   <Privileged>false</Privileged>
   <Support>https://discord.gg/2dV4xRN</Support>
-  <Project>https://github.com/groveld/discordjs-bot</Project>
-  <Overview>Discordjs-Bot is a general-purpose Discord bot build with the Discord.js library.</Overview>
+  <Project>https://github.com/groveld/discordjs-watchdog</Project>
+  <Overview>Discord-WatchDog is a general-purpose Discord bot build with the Discord.js library.</Overview>
   <Category>Other:</Category>
   <WebUI>http://[IP]:[PORT:5000]/</WebUI>
-  <TemplateURL>https://raw.githubusercontent.com/groveld/discord-bot/master/discord-bot.xml</TemplateURL>
-  <Icon>https://raw.githubusercontent.com/groveld/discord-bot/master/discord-bot.png</Icon>
+  <TemplateURL>https://raw.githubusercontent.com/groveld/discord-watchdog/master/unraid/watchdog.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/groveld/discord-watchdog/master/unraid/watchdog.png</Icon>
   <ExtraParams/>
   <PostArgs/>
   <CPUset/>
   <DateInstalled></DateInstalled>
   <DonateText>Donate</DonateText>
   <DonateLink/>
-  <Description>Discordjs-Bot is a general-purpose Discord bot build with the Discord.js library.</Description>
+  <Description>Discord-WatchDog is a general-purpose Discord bot build with the Discord.js library.</Description>
   <Networking>
     <Mode>bridge</Mode>
     <Publish>

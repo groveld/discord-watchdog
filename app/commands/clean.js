@@ -13,7 +13,7 @@ exports.run = async (client, message, args) => {
     } else {
       messages = messages.array().slice(0, amount);
     }
-    message.channel.bulkDelete(messages).catch(err => client.logger.error(err.stack));
+    message.channel.bulkDelete(messages).catch(err => client.log.error(err.stack));
    });
 };
 

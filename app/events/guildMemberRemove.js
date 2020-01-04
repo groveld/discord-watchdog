@@ -12,5 +12,5 @@ module.exports = async (client, member) => {
   const msgGoodbye = settings.msgGoodbye.replace("{{user}}", member.user.tag);
 
   // Send the goodbye message to the goodbye channel.
-  member.guild.channels.find("name", settings.msgChannel).send(msgGoodbye).catch(err => client.logger.error(err.message));
+  member.guild.channels.find("name", settings.msgChannel).send(msgGoodbye).catch(err => client.log.error(err.message));
 };

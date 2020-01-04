@@ -3,7 +3,7 @@ module.exports = async client => {
   await client.wait(2000);
 
   // Initializes the dashboard.
-  require("../modules/dashboard.js")(client);
+  // require("../modules/dashboard.js")(client);
 
   // We check for any guilds added while the bot was offline, if any were, they get a default configuration.
   const offline = await client.settings.findAll({ attributes: ['guild'] }).map(t => parseInt(t.guild));
@@ -15,5 +15,5 @@ module.exports = async client => {
   client.user.setPresence({game: {name: `How can i help you?`, type:0}});
 
   // Log that we're ready to serve, so we know the bot accepts commands.
-  client.logger.info(`${client.user.tag}, ready to serve ${client.users.size - 1} users in ${client.guilds.size} servers.`);
+  client.log.info(`${client.user.tag}, ready to serve ${client.users.size - 1} users in ${client.guilds.size} servers.`);
 };

@@ -1,6 +1,10 @@
+const fs = require("fs");
 const winston = require("winston");
 const moment = require("moment");
 const chalk = require("chalk");
+
+const logDir = "../config";
+if (!fs.existsSync(logDir)) fs.mkdirSync(logDir)
 
 const colorLevel = level => {
   switch (level) {
@@ -29,7 +33,7 @@ var logger = new winston.Logger({
   transports: [
     new winston.transports.File({
       level: "debug",
-      filename: "../config/logs/watchdog.log",
+      filename: `${logDir}/watchdog.log`,
       handleExceptions: true,
       json: false,
       maxsize: 5242880, //5MB
