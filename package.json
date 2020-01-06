@@ -5,10 +5,9 @@
   "main": "app/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cd app && node app.js",
-    "dev": "cd app && node -r dotenv/config app.js dotenv_config_path=../.env",
-    "docker-build": "docker build -t groveld/discord-watchdog:dev .",
-    "docker-push": "docker push groveld/discord-watchdog:dev"
+    "start": "cd app && node -r dotenv/config app.js",
+    "docker-build": "docker build -t groveld/discord-watchdog .",
+    "docker-push": "docker push groveld/discord-watchdog"
   },
   "keywords": [
     "nodejs",
