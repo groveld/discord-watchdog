@@ -9,11 +9,11 @@ COPY package*.json .
 RUN npm install --only=prod
 
 # Bundle app source files
-COPY app .
+COPY src .
 
 # Define ports and volumes
-EXPOSE 5000/tcp
+EXPOSE 5052/tcp
 VOLUME /usr/src/watchdog/config
 
 # Start app
-CMD ["node", "app.js"]
+CMD ["node", "index.js"]

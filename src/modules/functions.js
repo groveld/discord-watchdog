@@ -137,19 +137,19 @@ module.exports = (client) => {
   // };
 
   // `await client.wait(1000);` to "pause" for 1 second.
-  client.wait = require("util").promisify(setTimeout);
+  // client.wait = require("util").promisify(setTimeout);
 
-  client.on("error", error => {
-    client.log.error(error)
-  });
+  // client.on("error", error => {
+  //   client.log.error(error)
+  // });
 
-  client.on("warn", warning => {
-    client.log.warn(warning)
-  });
+  // client.on("warn", warning => {
+  //   client.log.warn(warning)
+  // });
 
-  client.on("debug", debug => {
-    client.log.debug(debug)
-  });
+  // client.on("debug", debug => {
+  //   client.log.debug(debug)
+  // });
 
   process.on("uncaughtException", err => {
     const errorMsg = err.stack.replace(new RegExp(`${__dirname}/`, "g"), "./");
