@@ -1,7 +1,6 @@
 const log = require('./modules/logger');
-const fs = require('fs');
-// const { readdirSync } = require('fs');
 const { Client, Collection } = require('discord.js');
+const fs = require('fs');
 
 const client = new Client();
 client.commands = new Collection();
@@ -30,4 +29,4 @@ client.on('warn', warning => log.warn(warning));
 
 client.on('debug', debug => log.debug(debug));
 
-client.login(process.env.TOKEN).catch(error => log.error(error.message));
+client.login(process.env.BOT_TOKEN).catch(error => log.error(error.message));

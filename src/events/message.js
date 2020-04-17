@@ -2,7 +2,7 @@ const log = require('../modules/logger');
 const { Collection } = require('discord.js');
 
 module.exports = (client, message) => {
-  if (!message.content.startsWith(process.env.PREFIX) || message.author.bot) return;
+  if (!message.content.startsWith(process.env.BOT_PREFIX) || message.author.bot) return;
 
   const args = message.content.slice(process.env.PREFIX.length).split(/ +/);
   const commandName = args.shift().toLowerCase();

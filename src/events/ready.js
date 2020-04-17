@@ -1,5 +1,5 @@
 const log = require('../modules/logger');
-// const db = require('../modules/database');
+// const db = require('../database/db');
 
 module.exports = async (client) => {
   // Why await here? Because the ready event isn't actually ready, sometimes guild information will come in *after* ready.

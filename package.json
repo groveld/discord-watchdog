@@ -8,8 +8,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "cd src && nodemon -r dotenv/config index.js dotenv_config_path=../.env",
     "start": "cd src && node index.js",
-    "docker-build": "docker build -t groveld/discord-watchdog .",
-    "docker-push": "docker push groveld/discord-watchdog"
+    "docker-build": "docker build -t groveld/watchdog .",
+    "docker-push": "docker push groveld/watchdog:latest"
   },
   "keywords": [
     "nodejs",
