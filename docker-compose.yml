@@ -1,0 +1,25 @@
+version: '3.1'
+
+services:
+
+  mariadb:
+    image: mariadb
+    container_name: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: passw0rd
+      MYSQL_DATABASE: watchdog
+      MYSQL_USER: watchdog
+      MYSQL_PASSWORD: watchdog
+
+  watchdog:
+    build: .
+    image: groveld/watchdog
+    container_name: watchdog
+    restart: always
+    depends_on:
+      - mariadb
+    env_file:
+      - .env
+    ports:
+      - "5052:5052"
