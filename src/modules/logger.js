@@ -36,6 +36,7 @@ const logger = new winston.Logger({
       filename: `${logDir}/watchdog.log`,
       handleExceptions: true,
       json: false,
+      // eslint-disable-next-line no-inline-comments
       maxsize: 5242880, // 5MB
       maxFiles: 5,
       timestamp: true,

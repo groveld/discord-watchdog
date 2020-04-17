@@ -1,15 +1,17 @@
-module.exports = (client) => {
+const log = require('./modules/logger');
+
+module.exports = client => {
   // This function should resolve to an ELEVATION level which
   // is then sent to the command handler for verification.
-  client.elevation = async (message) => {
+  client.elevation = async message => {
     const settings = await client.settings.findOne({ where: { guild: message.guild.id } });
-    const modRole = message.guild.roles.find("name", settings.modRole);
-    const adminRole = message.guild.roles.find("name", settings.adminRole);
-    let permlvl = 0; // Anyone
-    if (modRole && message.member.roles.has(modRole.id)) permlvl = 3; // Moderator
-    if (adminRole && message.member.roles.has(adminRole.id)) permlvl = 4; // Administrator
-    if (message.author.id === message.guild.owner.id) permlvl = 5; // Guild Owner
-    if (message.author.id === process.env.BOT_OWNER) permlvl = 10; // Bot Owner
+    const modRole = message.guild.roles.find('name', settings.modRole);
+    const adminRole = message.guild.roles.find('name', settings.adminRole);
+    let permlvl = 0;
+    if (modRole && message.member.roles.has(modRole.id)) permlvl = 3;
+    if (adminRole && message.member.roles.has(adminRole.id)) permlvl = 4;
+    if (message.author.id === message.guild.owner.id) permlvl = 5;
+    if (message.author.id === process.env.BOT_OWNER) permlvl = 10;
     return permlvl;
   };
 
@@ -70,16 +72,14 @@ module.exports = (client) => {
   and stringifies objects!
   This is mostly only used by the Eval and Exec commands.
   */
-  client.clean = async (client, text) => {
-    if (text && text.constructor.name == "Promise")
-      text = await text;
-    if (typeof evaled !== "string")
-      text = require("util").inspect(text, {depth: 0});
+  client.clean = async text => {
+    if (text && text.constructor.name == 'Promise') {text = await text;}
+    if (typeof evaled !== 'string') {text = require('util').inspect(text, { depth: 0 });}
 
     text = text
-      .replace(/`/g, "`" + String.fromCharCode(8203))
-      .replace(/@/g, "@" + String.fromCharCode(8203))
-      .replace(process.env.BOT_TOKEN, "mfa.VkO_2G4Qv3T--NO--lWetW_tjND--TOKEN--QFTm6YGtzq9PH--4U--tG0");
+      .replace(/`/g, '`' + String.fromCharCode(8203))
+      .replace(/@/g, '@' + String.fromCharCode(8203))
+      .replace(process.env.TOKEN, 'mfa.VkO_2G4Qv3T--NO--lWetW_tjND--TOKEN--QFTm6YGtzq9PH--4U--tG0');
 
     return text;
   };
@@ -151,18 +151,18 @@ module.exports = (client) => {
   //   client.log.debug(debug)
   // });
 
-  process.on("uncaughtException", err => {
-    const errorMsg = err.stack.replace(new RegExp(`${__dirname}/`, "g"), "./");
-    client.log.error("Uncaught Exception: ", errorMsg);
+  process.on('uncaughtException', error => {
+    const errorMsg = error.stack.replace(new RegExp(`${__dirname}/`, 'g'), './');
+    log.error('Uncaught Exception: ', errorMsg);
     process.exit(1);
   });
 
-  process.on("unhandledRejection", err => {
-    client.log.error("Unhandled rejection: ", err.stack);
+  process.on('unhandledRejection', error => {
+    log.error('Unhandled rejection: ', error.stack);
     process.exit(1);
   });
 
-  process.on("SIGINT", () => {
+  process.on('SIGINT', () => {
     client.destroy();
     process.exit();
   });

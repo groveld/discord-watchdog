@@ -1,1 +1,0 @@
-The dashboard is called from events -> ready.

@@ -16,6 +16,7 @@ module.exports = {
   name: 'eval',
   description: 'Evaluates arbitrary javascript.',
   usage: '[code]',
+  args:true,
   execute(message, args) {
     const code = args.join(' ');
     try {
@@ -23,8 +24,8 @@ module.exports = {
       // const clean = await client.clean(client, evaled);
       message.channel.send(`\`\`\`js\n${evaled}\n\`\`\``);
     }
-    catch (err) {
-      message.channel.send(`\`\`\`xl\n${err.message}\n\`\`\``);
+    catch (error) {
+      message.channel.send(`\`\`\`xl\n${error.message}\n\`\`\``);
     }
   },
 };
