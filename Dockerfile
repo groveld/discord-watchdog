@@ -1,4 +1,4 @@
-FROM node:8.15-alpine
+FROM node:13.13-slim
 
 LABEL maintainer="Martin Groeneveld <martin@groveld.com>"
 
