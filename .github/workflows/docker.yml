@@ -19,5 +19,6 @@ jobs:
         username: groveld
         password: $GITHUB_TOKEN
         registry: docker.pkg.github.com
-        repository: groveld/discord-watchdog
-        tags: workflow
+        repository: groveld/discord-watchdog/watchdog
+        tag_with_ref: true
+        tag_with_sha: true
