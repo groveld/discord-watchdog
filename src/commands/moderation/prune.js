@@ -1,4 +1,4 @@
-const log = require('../modules/logger');
+const logger = require('../../utils/logger');
 
 module.exports = {
   name: 'prune',
@@ -17,7 +17,7 @@ module.exports = {
     }
 
     message.channel.bulkDelete(amount, true).catch(error => {
-      log.error(error);
+      logger.error(error);
       message.channel.send('there was an error trying to prune messages in this channel!');
     });
   },

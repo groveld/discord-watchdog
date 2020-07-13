@@ -1,5 +1,5 @@
-const log = require('../modules/logger');
 const { Collection } = require('discord.js');
+const logger = require('../utils/logger');
 
 module.exports = (client, message) => {
   if (!message.content.startsWith(process.env.BOT_PREFIX) || message.author.bot) return;
@@ -26,7 +26,7 @@ module.exports = (client, message) => {
     return message.channel.send(reply);
   }
 
-  if (message.mentions.users.array().size >= 25 || 
+  if (message.mentions.users.array().size >= 25 ||
       message.mentions.members.array().size >= 25) {
   	message.member.ban({reason: 'Auto Moderation: Mentioned more than 25 members in a message.'})
   }
@@ -53,13 +53,13 @@ module.exports = (client, message) => {
   timestamps.set(message.author.id, now);
   setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 
-  log.info(cooldowns);
+  // logger.info(cooldowns);
 
   try {
     command.execute(message, args);
   }
   catch (error) {
-    log.error(error.message);
+    logger.error(error.message);
     message.reply('there was an error trying to execute that command!');
   }
 };

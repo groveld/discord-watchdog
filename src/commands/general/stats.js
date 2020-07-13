@@ -1,9 +1,3 @@
-/**
- * stats.js
- *
- * Description here.
- */
-
 const { MessageEmbed } = require('discord.js');
 
 module.exports = {
