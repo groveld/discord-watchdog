@@ -1,6 +1,6 @@
 # Discord-WatchDog
 
-![](https://github.com/groveld/discord-watchdog/workflows/Docker%20Image/badge.svg
+![](https://github.com/groveld/discord-watchdog/workflows/Docker%20Image/badge.svg)
 
 A General Purpose Node.js Discord Bot.
 
