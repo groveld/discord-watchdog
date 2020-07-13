@@ -1,10 +1,6 @@
 name: Lint Code Base
 
-on:
-  push:
-    branches-ignore: [master]
-  pull_request:
-    branches: [master]
+on: pull_request
 
 jobs:
   build:
@@ -19,4 +15,3 @@ jobs:
         uses: docker://github/super-linter:v3
         env:
           VALIDATE_ALL_CODEBASE: false
-          JAVASCRIPT_ES_CONFIG_FILE: .eslintrc.json
