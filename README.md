@@ -12,7 +12,7 @@ This is my personal bot code, and though I put it online with this nice readme f
 
 ## Features
 
-- [ ] `Auto-ban` user if @mention more than 25 users in a single message.
+- [x] `Auto-ban` user if @mention more than 25 users in a single message. - Completed by [liam.#9999](https://github.com/LiamTownsley)
 - [ ] `Polls`
 - [ ] `Music player`
 - [x] `!ping`
