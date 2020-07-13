@@ -1,4 +1,4 @@
-const log = require('../modules/logger');
+const logger = require('../../utils/logger');
 
 module.exports = {
   name: 'help',
@@ -6,6 +6,7 @@ module.exports = {
   aliases: ['commands'],
   usage: '[command name]',
   cooldown: 5,
+  guildOnly: true,
   execute(message, args) {
     const data = [];
     const { commands } = message.client;
@@ -21,7 +22,7 @@ module.exports = {
           message.reply('I\'ve sent you a DM with all my commands!');
         })
         .catch(error => {
-          log.error(`Could not send help DM to ${message.author.tag}.\n`, error);
+          logger.error(`Could not send help DM to ${message.author.tag}.\n`, error);
           message.reply('it seems like I can\'t DM you!');
         });
     }

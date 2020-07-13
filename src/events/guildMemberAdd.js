@@ -1,6 +1,6 @@
-const log = require('../modules/logger');
+const logger = require('../utils/logger');
 
 module.exports = (client, member) => {
-  log.info('Event guildMemberAdd triggered.');
-  log.info(`${member.name} (${member.id})`);
+  logger.info('Event guildMemberAdd triggered.');
+  logger.info(`${member.name} (${member.id})`);
 };

@@ -1,7 +1,7 @@
-const log = require('./modules/logger');
+const logger = require('./utils/logger');
 const { ShardingManager } = require('discord.js');
 const manager = new ShardingManager('./bot.js', { token: process.env.BOT_TOKEN });
 
-manager.on('shardCreate', shard => log.info(`Launched shard ${shard.id}`));
+manager.on('shardCreate', shard => logger.info(`Launched shard ${shard.id}`));
 
-manager.spawn().catch(error => log.error(error.message));
+manager.spawn().catch(error => logger.error(error.message));
