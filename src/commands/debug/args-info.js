@@ -8,5 +8,5 @@ args:true,
     }
 
     message.channel.send(`First argument: ${args[0]}`);
-  },
+  } ,
 };

@@ -18,6 +18,8 @@ module.exports = {
       .addField(':arrow_right: Categories', message.guild.channels.cache.filter(channel => channel.type === 'category').map(category => category.toString()).join(' **|** '), true)
       .addField(':arrow_right: Channels', message.guild.channels.cache.filter(channel => channel.type !== 'category').map(channel => channel.toString()).join(' **|** '), true);
 
+
+
     return message.channel.send(embed)
   },
 };
