@@ -1,0 +1,28 @@
+name: Docker Image CI
+
+on:
+  pull_request:
+    branches: [ master ]
+
+env:
+  TAG: $(echo ${GITHUB_SHA} | cut -c1-8)
+  CONTAINER: ${{ secrets.DOCKER_CONTAINER_NAME }}
+  USERNAME: ${{ secrets.DOCKER_USERNAME }}
+  PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Login to Docker Hub
+      run: docker login -u $USERNAME -p $PASSWORD
+
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag $USERNAME/$CONTAINER:$TAG
+
+    - name: Push the Docker image to Docker Hub
+      run: docker push $USERNAME/$CONTAINER:$TAG

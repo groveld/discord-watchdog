@@ -27,3 +27,9 @@ This is my personal bot code, and though I put it online with this nice readme f
 - Add and remove roles to users if Moderator or Admin.
 - Assign roles to users after being online for an X amount time.
 - Auto execute commands at defined times/intervals. (Birthday messages, server lockdown)
+
+## Setup development
+
+***Windows Only***
+
+```npm install --global --production --vs2015 --add-python-to-path windows-build-tools```

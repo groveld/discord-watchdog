@@ -1,4 +1,4 @@
-version: '3.1'
+version: '3'
 
 services:
 
@@ -7,7 +7,7 @@ services:
     container_name: mariadb
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: passw0rd
+      MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: watchdog
       MYSQL_USER: watchdog
       MYSQL_PASSWORD: watchdog

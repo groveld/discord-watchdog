@@ -1,15 +1,13 @@
 {
   "name": "discord-watchdog",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A General Purpose Discord.js Bot.",
   "main": "src/index.js",
+  "private": true,
   "scripts": {
     "lint": "eslint src",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "cd src && nodemon -r dotenv/config index.js dotenv_config_path=../.env",
-    "start": "cd src && node index.js",
-    "docker-build": "docker build -t groveld/watchdog .",
-    "docker-push": "docker push groveld/watchdog:latest"
+    "start": "cd src && node index.js"
   },
   "keywords": [
     "nodejs",
@@ -18,19 +16,24 @@
     "discord",
     "bot"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/groveld/discord-watchdog.git"
-  },
-  "author": "Martin Groeneveld <martin@groveld.com>",
+  "author": "Martin Groeneveld <martin@groveld.com> (https://www.groveld.com)",
   "contributors": [
     "Liam Townsley <contact@liamtownsley.me> (https://liamtownsley.me)"
   ],
   "license": "ISC",
+  "homepage": "https://github.com/groveld/discord-watchdog",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/groveld/discord-watchdog.git"
+  },
   "bugs": {
     "url": "https://github.com/groveld/discord-watchdog/issues"
   },
-  "homepage": "https://github.com/groveld/discord-watchdog",
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "eslint": "^6.8.0",
+    "nodemon": "^2.0.3"
+  },
   "dependencies": {
     "body-parser": "^1.18.3",
     "chalk": "^2.3.2",
@@ -49,10 +52,5 @@
     "sequelize": ">=5.3.0",
     "winston": "^2.4.1",
     "node-fetch": "^2.6.0"
-  },
-  "devDependencies": {
-    "dotenv": "^8.2.0",
-    "eslint": "^6.8.0",
-    "nodemon": "^2.0.3"
   }
 }
