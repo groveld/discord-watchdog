@@ -1,25 +1,17 @@
 version: '3'
-
 services:
-
-  mariadb:
-    image: mariadb
-    container_name: mariadb
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: watchdog
-      MYSQL_USER: watchdog
-      MYSQL_PASSWORD: watchdog
-
   watchdog:
     build: .
-    image: groveld/watchdog
+    image: ghcr.io/groveld/watchdog
     container_name: watchdog
     restart: always
-    depends_on:
-      - mariadb
     env_file:
       - .env
+    networks:
+      - backend
     ports:
       - "5052:5052"
+
+networks:
+  backend:
+    driver: bridge

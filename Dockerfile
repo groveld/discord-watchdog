@@ -1,22 +1,21 @@
 FROM node:13.13-slim
 
-LABEL maintainer="Martin Groeneveld <martin@groveld.com>"
+LABEL maintainer="Martin Groeneveld <groveld@pm.me>"
 
 RUN mkdir -p /usr/src/watchdog/app /usr/src/watchdog/config
 
 WORKDIR /usr/src/watchdog/app
 
-COPY package*.json .
-RUN npm install --only=prod
+COPY package*.json ./
 
-COPY src .
+RUN npm install --production
 
-RUN chown -R nobody:users /usr/src/watchdog \
-  && chmod -R ugo-x,u+rwX,go+rX,go-w /usr/src/watchdog
+COPY --chown=node:node src ./
 
-EXPOSE 5052/tcp
 VOLUME /usr/src/watchdog/config
 
-USER nobody
+EXPOSE 5052/tcp
+
+USER node
 
 CMD ["node", "index.js"]
