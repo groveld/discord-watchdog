@@ -26,9 +26,8 @@ module.exports = (client, message) => {
     return message.channel.send(reply);
   }
 
-  if (message.mentions.users.array().size >= 25 ||
-      message.mentions.members.array().size >= 25) {
-  	message.member.ban({reason: 'Auto Moderation: Mentioned more than 25 members in a message.'})
+  if (message.mentions.users.array().size >= 25 || message.mentions.members.array().size >= 25) {
+    message.member.ban({ reason: 'Auto Moderation: Mentioned more than 25 members in a message.' });
   }
 
   const cooldowns = new Collection();
