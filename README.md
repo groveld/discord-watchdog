@@ -1,4 +1,4 @@
-# Discord-WatchDog
+# discord-watchdog
 
 ![Linter](https://github.com/groveld/discord-watchdog/workflows/Linter/badge.svg)
 ![Docker](https://github.com/groveld/discord-watchdog/workflows/Docker/badge.svg)
