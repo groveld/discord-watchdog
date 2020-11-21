@@ -6,7 +6,13 @@ module.exports = async (client) => {
   await new Promise(r => setTimeout(r, 2000));
 
   // Set bot presece
-  client.user.setPresence({ activity: { type: 'PLAYING', name: 'with discord.js' }, status: 'online' });
+  client.user.setPresence({
+    // activity: {
+    //   type: 'WATCHING',
+    //   name: 'all of you!',
+    // },
+    status: 'online',
+  });
 
   // Log that we're ready to serve, so we know the bot accepts commands.
   logger.info(`${client.user.tag}, ready to serve.`);
