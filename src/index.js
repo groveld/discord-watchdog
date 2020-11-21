@@ -1,4 +1,5 @@
 const logger = require('./utils/logger');
+const Dashboard = require('./dashboard');
 const { ShardingManager } = require('discord.js');
 const manager = new ShardingManager('./bot.js', { token: process.env.BOT_TOKEN });
 
