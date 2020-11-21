@@ -9,7 +9,7 @@ This is my personal bot code, and though I put it online with this nice readme f
 
 [Join Discord Server](https://discord.gg/2dV4xRN)
 
-[Invite Discord-Bot](https://discordapp.com/oauth2/authorize?&client_id=431381992081326081&scope=bot&permissions=2146958839)
+[Invite Discord-Bot](https://discordapp.com/oauth2/authorize?&client_id=431381992081326081&scope=bot)
 
 [Bot Control Panel](https://watchdog.groveld.com/)
 
@@ -31,7 +31,14 @@ This is my personal bot code, and though I put it online with this nice readme f
 - Assign roles to users after being online for an X amount time.
 - Auto execute commands at defined times/intervals. (Birthday messages, server lockdown)
 
-## Setup development
+## RUN
+
+### Requirements
+
+- Git
+- Node.js
+- NPM
+- MySQL
 
 ***Windows Only***
 
