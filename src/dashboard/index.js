@@ -14,7 +14,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', require('./routes/index'));
 
 // Handle 404
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
   const error = new Error('Page Not Found');
   error.status = 404;
   next(error);
@@ -22,7 +22,7 @@ app.use(function (req, res, next) {
 
 // Handle error
 // eslint-disable-next-line no-unused-vars
-app.use(function (err, req, res, next) {
+app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error', {
     error: err.status,

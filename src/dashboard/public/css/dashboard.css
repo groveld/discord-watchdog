@@ -1,7 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,500');
 
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
 body {
-    background: #2C2F33;
+    background: #34383c;
     margin: 0 0;
     padding: 0 0;
 }
