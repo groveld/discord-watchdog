@@ -22,8 +22,8 @@ module.exports = {
       // const clean = await client.clean(client, evaled);
       message.channel.send(`\`\`\`js\n${evaled}\n\`\`\``);
     }
-    catch (error) {
-      message.channel.send(`\`\`\`xl\n${error.message}\n\`\`\``);
+    catch (err) {
+      message.channel.send(`\`\`\`xl\n${err.message}\n\`\`\``);
     }
   },
 };

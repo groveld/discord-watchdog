@@ -1,10 +1,11 @@
 const { Collection } = require('discord.js');
 const logger = require('../utils/logger');
+const commandPrefix = process.env.WATCHDOG_PREFIX || '?';
 
 module.exports = (client, message) => {
-  if (!message.content.startsWith(process.env.WATCHDOG_PREFIX) || message.author.bot) return;
+  if (!message.content.startsWith(commandPrefix) || message.author.bot) return;
 
-  const args = message.content.slice(process.env.WATCHDOG_PREFIX.length).split(/ +/);
+  const args = message.content.slice(commandPrefix.length).split(/ +/);
   const commandName = args.shift().toLowerCase();
 
   const command = client.commands.get(commandName)
@@ -20,7 +21,7 @@ module.exports = (client, message) => {
     let reply = `You didn't provide any arguments, ${message.author}!`;
 
     if (command.usage) {
-      reply += `\nThe proper usage would be: \`${process.env.WATCHDOG_PREFIX}${command.name} ${command.usage}\``;
+      reply += `\nThe proper usage would be: \`${commandPrefix}${command.name} ${command.usage}\``;
     }
 
     return message.channel.send(reply);
@@ -57,8 +58,8 @@ module.exports = (client, message) => {
   try {
     command.execute(message, args);
   }
-  catch (error) {
-    logger.error(error.message);
+  catch (err) {
+    logger.error(err.message);
     message.reply('there was an error trying to execute that command!');
   }
 };

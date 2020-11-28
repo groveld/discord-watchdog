@@ -10,7 +10,7 @@ services:
     networks:
       - backend
     ports:
-      - "5052:5052"
+      - "8080:8080"
 
 networks:
   backend:

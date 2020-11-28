@@ -5,6 +5,6 @@ const manager = new ShardingManager('./bot.js', { token: process.env.DISCORD_BOT
 
 manager.on('shardCreate', shard => logger.info(`Launched shard ${shard.id}`));
 
-manager.spawn().catch(error => logger.error(error.message));
+manager.spawn().catch(err => logger.error(err.message));
 
 Dashboard;
