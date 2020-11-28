@@ -1,6 +1,7 @@
 # discord-watchdog
 
 ![Linter](https://github.com/groveld/discord-watchdog/workflows/Linter/badge.svg)
+![CodeQL](https://github.com/groveld/discord-watchdog/workflows/CodeQL/badge.svg)
 ![Docker](https://github.com/groveld/discord-watchdog/workflows/Docker/badge.svg)
 
 A General Purpose Node.js Discord Bot.
