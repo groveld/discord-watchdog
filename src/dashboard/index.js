@@ -30,7 +30,7 @@ app.use(function(err, req, res, next) {
   });
 });
 
-const port = process.env.BOT_PORT || 5052;
+const port = process.env.WATCHDOG_PORT;
 app.listen(port, () => {
   console.log(`Running on http://localhost:${port}`);
 });
