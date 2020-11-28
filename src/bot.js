@@ -9,7 +9,8 @@ client.commands = new Collection();
   await registerEvents(client, '../events');
   await registerCommands(client, '../commands');
 
-  client.login(process.env.BOT_TOKEN).catch(err => logger.error(err.message));
+  client.login(process.env.BOT_TOKEN)
+    .catch(err => logger.error(err.message));
 })();
 
 client.on('error', err => logger.error(err));
