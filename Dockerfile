@@ -14,7 +14,7 @@ COPY --chown=node:node src ./
 
 VOLUME /usr/src/watchdog/config
 
-EXPOSE 5052/tcp
+EXPOSE 8080/tcp
 
 USER node
 

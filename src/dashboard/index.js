@@ -30,7 +30,7 @@ app.use(function(err, req, res, next) {
   });
 });
 
-const port = process.env.WATCHDOG_PORT;
+const port = process.env.WATCHDOG_PORT || 8080;
 app.listen(port, () => {
   console.log(`Running on http://localhost:${port}`);
 });

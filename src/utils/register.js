@@ -31,8 +31,8 @@ const registerCommands = async (client, dir) => {
       client.commands.set(command.name, command);
       delete require.cache[require.resolve(path.join(__dirname, file))];
     }
-    catch (error) {
-      logger.error(error.message);
+    catch (err) {
+      logger.error(err.message);
     }
   }
 };
