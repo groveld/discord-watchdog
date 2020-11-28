@@ -10,11 +10,11 @@ client.commands = new Collection();
   await registerCommands(client, '../commands');
 
   client.login(process.env.BOT_TOKEN)
-    .catch(error => logger.error(error.message));
+    .catch(err => logger.error(err.message));
 })();
 
-client.on('error', error => logger.error(error));
+client.on('error', err => logger.error(err));
 
-client.on('warn', warning => logger.warn(warning));
+client.on('warn', err => logger.warn(err));
 
-client.on('debug', debug => logger.debug(debug));
+client.on('debug', err => logger.debug(err));
