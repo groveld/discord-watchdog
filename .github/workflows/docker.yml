@@ -5,7 +5,7 @@ on:
     branches: [ main ]
 
 jobs:
-  docker:
+  build:
     name: Create Docker Container
     runs-on: ubuntu-latest
     steps:
@@ -30,4 +30,6 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: ghcr.io/groveld/watchdog:latest
+        tags: |
+          ghcr.io/groveld/watchdog:latest
+          ghcr.io/groveld/watchdog:${{ github.sha }}
