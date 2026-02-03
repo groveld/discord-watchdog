@@ -3,7 +3,6 @@
 .env
 config
 node_modules
-package-lock.json
 npm-debug.log
 
 # OS generated files #
