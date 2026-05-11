@@ -32,20 +32,20 @@
   },
   "devDependencies": {
     "dotenv": "^17.4.2",
-    "eslint": "^10.2.1",
+    "eslint": "^10.3.0",
     "nodemon": "^3.1.14"
   },
   "dependencies": {
     "body-parser": "^2.2.2",
     "chalk": "^5.6.2",
-    "discord.js": "^14.26.3",
+    "discord.js": "^14.26.4",
     "ejs": "^5.0.2",
     "express": "^5.2.1",
     "express-passport": "^0.1.0",
     "express-session": "^1.15.6",
     "helmet": "^8.1.0",
     "mariadb": "^3.5.2",
-    "marked": "^18.0.2",
+    "marked": "^18.0.3",
     "moment": "^2.21.0",
     "moment-duration-format": "^2.2.2",
     "node-fetch": "^3.3.2",
