@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "dotenv": "^17.4.2",
-    "eslint": "^10.3.0",
+    "eslint": "^10.4.0",
     "nodemon": "^3.1.14"
   },
   "dependencies": {
@@ -43,9 +43,9 @@
     "express": "^5.2.1",
     "express-passport": "^0.1.0",
     "express-session": "^1.15.6",
-    "helmet": "^8.1.0",
+    "helmet": "^8.2.0",
     "mariadb": "^3.5.2",
-    "marked": "^18.0.3",
+    "marked": "^18.0.4",
     "moment": "^2.21.0",
     "moment-duration-format": "^2.2.2",
     "node-fetch": "^3.3.2",
